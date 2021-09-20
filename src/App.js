@@ -1,18 +1,25 @@
-import React from 'react';
-import { BrowserRouter, NavLink, Switch, Route, Redirect } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-import './App.scss';
+import "./App.scss";
+import Home from "./views/home/home";
+import NavHeader from "./components/NavHeader/NavHeader";
 
 function App() {
   return (
     <div id="app">
       <BrowserRouter>
-        <NavLink to="/home" activeClassName="active">/home</NavLink>
-        <NavLink to="/songListCategory" activeClassName="active">/songListCategory</NavLink>
-        <NavLink to="/songList" activeClassName="active">/songList</NavLink>
+        <NavHeader></NavHeader>
         <Switch>
           <Redirect exact from="/" to="/home"></Redirect>
-          <Route path="/home">home</Route>
+          <Route path="/home">
+            <Home></Home>
+          </Route>
           <Route path="/songListCategory">songListCategory</Route>
           <Route path="/songList">songList</Route>
         </Switch>

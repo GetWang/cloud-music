@@ -1,0 +1,55 @@
+.nav-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 0 10vw;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: saturate(180%) blur(20px);
+  .nav-btns {
+    .btn {
+      float: left;
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      padding: 8px;
+      border-radius: 10px;
+      background: pink;
+      transition: all 0.2s;
+      &.back {
+        margin-right: 8px;
+      }
+      &:hover {
+        background: #f2f2f4;
+      }
+    }
+  }
+  .navs {
+    .nav {
+      float: left;
+      margin: 0 12px;
+      padding: 8px 10px 6px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 22px;
+      text-decoration: none;
+      color: #000;
+      transition: all 0.2s;
+      &:hover,
+      &.active {
+        color: #335eea;
+        background: #f2f2f4;
+      }
+    }
+  }
+  .mode {
+    width: 40px;
+    height: 40px;
+    background: pink;
+  }
+}
