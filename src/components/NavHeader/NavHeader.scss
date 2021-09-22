@@ -3,11 +3,12 @@
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 64px;
-  padding: 0 10vw;
+  padding: 0 5vw;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(180%) blur(20px);
   .nav-btns {

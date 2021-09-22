@@ -1,0 +1,32 @@
+.daily-recommend {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  margin: 0 12px;
+  border-radius: 16px;
+  background: pink;
+  .left-title {
+    position: absolute;
+    top: 50%;
+    left: 35px;
+    width: 148px;
+    height: 148px;
+    margin-top: -74px;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 74px;
+    letter-spacing: 10px;
+    color: #fff;
+    user-select: none;
+  }
+  .play-btn {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: skyblue;
+    cursor: pointer;
+  }
+}
