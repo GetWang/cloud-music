@@ -4,6 +4,7 @@ import axios from "axios";
 import "./home.scss";
 import DailyRecommend from "../../components/DailyRecommend/DailyRecommend";
 import PersonalFM from "../../components/PersonalFM/PersonalFM";
+import SongLists from "../../components/SongLists/SongLists";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ export default class Home extends React.Component {
               查看更多
             </a>
           </div>
+          <SongLists></SongLists>
         </section>
       </main>
     );
