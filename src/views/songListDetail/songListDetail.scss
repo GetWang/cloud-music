@@ -1,0 +1,95 @@
+#song-list-detail-page {
+  padding: 32px 5vw 96px;
+  font-family: Barlow, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
+    Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif, microsoft uighur;
+  .song-list-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 72px;
+    .cover-wrapper {
+      position: relative;
+      float: left;
+      width: 288px;
+      height: 288px;
+      margin-right: 56px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: pink;
+      box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.3);
+      .cover {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 52px;
+        height: 52px;
+        transform: translate(-50%, -50%);
+        background: skyblue;
+        cursor: pointer;
+      }
+    }
+    .desc {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .list-name {
+        max-height: 100px;
+        overflow: hidden;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 50px;
+        color: #000;
+      }
+      .author {
+        margin-top: 24px;
+        overflow: hidden;
+        font-size: 18px;
+        line-height: 25px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #000;
+        opacity: 0.88;
+      }
+      .time-nums {
+        margin-top: 2px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #000;
+        opacity: 0.68;
+      }
+      .intro {
+        max-height: 60px;
+        margin-top: 24px;
+        overflow: hidden;
+        font-size: 14px;
+        line-height: 20px;
+        color: #000;
+        opacity: 0.88;
+      }
+      .play-btn {
+        height: 24px;
+        margin-top: 32px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 24px;
+        color: #335eea;
+        background: #eaeffd;
+        transition: all 0.2s;
+        transform-origin: center center;
+        cursor: pointer;
+        user-select: none;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
