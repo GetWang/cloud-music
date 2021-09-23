@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 
 import "./App.scss";
-import Home from "./views/home/home";
 import NavHeader from "./components/NavHeader/NavHeader";
+import Home from "./views/home/home";
+import SongList from "./views/songList/songList";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
           <Route path="/home">
             <Home></Home>
           </Route>
-          <Route path="/songListCategory">songListCategory</Route>
-          <Route path="/songList">songList</Route>
+          <Route path="/songList">
+            <SongList></SongList>
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>
