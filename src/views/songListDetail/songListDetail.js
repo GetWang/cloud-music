@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./songListDetail.scss";
+import PlayList from "../../components/PlayList/PlayList";
 
 export default class SongListDetail extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ export default class SongListDetail extends React.Component {
             </div>
           </div>
         </div>
+        <PlayList></PlayList>
       </main>
     );
   }
