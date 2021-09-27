@@ -4,7 +4,17 @@
   height: 100%;
   margin: 0 12px;
   border-radius: 16px;
-  background: pink;
+  overflow: hidden;
+  .recommend-cover {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+    animation: up-down-move 40s infinite;
+  }
   .left-title {
     position: absolute;
     top: 50%;
@@ -36,5 +46,17 @@
     &:hover {
       background: rgba(255, 255, 255, 0.44);
     }
+  }
+}
+
+@keyframes up-down-move {
+  25% {
+    transform: translateY(-75%);
+  }
+  75% {
+    transform: translateY(-25%);
+  }
+  100% {
+    transform: translateY(-50%);
   }
 }
