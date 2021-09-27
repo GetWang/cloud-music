@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./PersonalFM.scss";
+import SvgIcon from "../SvgIcon/SvgIcon";
 
 export default class PersonalFM extends React.Component {
   constructor(props) {
@@ -16,12 +17,20 @@ export default class PersonalFM extends React.Component {
           <p className="singer-name">Jack Jezzro And Friends</p>
           <div className="control">
             <div className="btns">
-              <div className="btn prev"></div>
-              <div className="btn play"></div>
-              <div className="btn next"></div>
+              <div className="btn prev">
+                <SvgIcon iconName="prev"></SvgIcon>
+              </div>
+              <div className="btn play">
+                <SvgIcon iconName="play"></SvgIcon>
+              </div>
+              <div className="btn next">
+                <SvgIcon iconName="next"></SvgIcon>
+              </div>
             </div>
             <div className="fm-mark">
-              <i className="icon"></i>
+              <div className="icon">
+                <SvgIcon iconName="fm"></SvgIcon>
+              </div>
               <p className="text">私人FM</p>
             </div>
           </div>

@@ -17,6 +17,7 @@
       overflow: hidden;
       background: pink;
       box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.3);
+      user-select: none;
       .cover {
         display: block;
         width: 100%;
@@ -28,9 +29,24 @@
         left: 50%;
         width: 52px;
         height: 52px;
+        padding: 15px 13px 15px 17px;
+        box-sizing: border-box;
+        border-radius: 50%;
         transform: translate(-50%, -50%);
-        background: skyblue;
+        visibility: hidden;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.14);
         cursor: pointer;
+        transition: all 0.2s;
+        backdrop-filter: blur(8px);
+        &:hover {
+          background: rgba(255, 255, 255, 0.44);
+        }
+      }
+      &:hover {
+        .play-btn {
+          visibility: visible;
+        }
       }
     }
     .desc {
@@ -73,13 +89,13 @@
         opacity: 0.88;
       }
       .play-btn {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         height: 24px;
         margin-top: 32px;
         padding: 8px 16px;
         border-radius: 8px;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 24px;
         color: #335eea;
         background: #eaeffd;
         transition: all 0.2s;
@@ -88,6 +104,16 @@
         user-select: none;
         &:hover {
           transform: scale(1.1);
+        }
+        .icon {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+        }
+        .text {
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 22px;
         }
       }
     }

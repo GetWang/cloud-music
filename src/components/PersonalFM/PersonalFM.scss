@@ -14,7 +14,7 @@
     border-radius: 12px;
     overflow: hidden;
     background: skyblue;
-    cursor: pointer;
+    user-select: none;
   }
   .desc-control {
     position: relative;
@@ -56,24 +56,28 @@
         padding: 8px;
         border-radius: 25%;
         box-sizing: border-box;
-        background: skyblue;
+        color: #fff;
         cursor: pointer;
         transition: all 0.2s;
         &:hover {
           background: rgba(255, 255, 255, 0.08);
+        }
+        &.play {
+          padding: 8px 7px 8px 9px;
         }
       }
       .fm-mark {
         float: right;
         width: 53px;
         opacity: 0.18;
+        user-select: none;
         .icon {
           float: left;
           width: 15px;
           height: 18px;
           margin-top: 11px;
           margin-right: 6px;
-          background: skyblue;
+          color: #fff;
         }
         .text {
           overflow: hidden;

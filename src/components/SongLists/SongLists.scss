@@ -11,6 +11,7 @@
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
+      user-select: none;
       .cover {
         position: absolute;
         top: 0;
@@ -25,9 +26,18 @@
         left: 50%;
         width: 22%;
         height: 22%;
+        padding: 6% 6% 8% 8%;
+        box-sizing: border-box;
+        border-radius: 50%;
         transform: translate(-50%, -50%);
         visibility: hidden;
-        background: pink;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.14);
+        transition: all 0.2s;
+        backdrop-filter: blur(8px);
+        &:hover {
+          background: rgba(255, 255, 255, 0.44);
+        }
       }
       &:hover {
         .play-btn {

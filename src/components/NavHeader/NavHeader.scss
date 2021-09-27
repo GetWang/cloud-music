@@ -11,6 +11,7 @@
   padding: 0 5vw;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(180%) blur(20px);
+  user-select: none;
   .nav-btns {
     .btn {
       float: left;
@@ -19,8 +20,8 @@
       box-sizing: border-box;
       padding: 8px;
       border-radius: 10px;
-      background: pink;
       transition: all 0.2s;
+      cursor: pointer;
       &.back {
         margin-right: 8px;
       }
@@ -52,5 +53,6 @@
     width: 40px;
     height: 40px;
     background: pink;
+    cursor: pointer;
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import "./NavHeader.scss";
+import SvgIcon from "../SvgIcon/SvgIcon";
 
 export default class NavHeader extends React.Component {
   constructor(props) {
@@ -12,8 +13,12 @@ export default class NavHeader extends React.Component {
     return (
       <header className="nav-header">
         <div className="nav-btns">
-          <div className="btn back"></div>
-          <div className="btn forward"></div>
+          <div className="btn back">
+            <SvgIcon iconName="arrow-left"></SvgIcon>
+          </div>
+          <div className="btn forward">
+            <SvgIcon iconName="arrow-right"></SvgIcon>
+          </div>
         </div>
         <div className="navs">
           <NavLink to="/home" className="nav" activeClassName="active">
