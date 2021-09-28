@@ -15,3 +15,14 @@ export function getPersonalizedFmSongs() {
     return res.data;
   });
 }
+
+export function getRecommendSongLists(params = {}) {
+  const url = API_HOST + "/personalized";
+  return axios
+    .get(url, {
+      params,
+    })
+    .then((res) => {
+      return res.data;
+    });
+}

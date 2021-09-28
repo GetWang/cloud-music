@@ -1,26 +1,47 @@
 import React from "react";
-import axios from "axios";
 
 import "./home.scss";
 import DailyRecommend from "../../components/DailyRecommend/DailyRecommend";
 import PersonalFM from "../../components/PersonalFM/PersonalFM";
 import SongLists from "../../components/SongLists/SongLists";
+import { getRecommendSongLists } from "../../api/personal";
+import { OK_CODE } from "../../api/common";
+import { createSongLists } from "../../common/js/songList";
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      songLists: [],
+    };
   }
 
-  // componentDidMount() {
-  //   axios
-  //     .get("http://localhost:4000/personalized")
-  //     .then((res) => {
-  //       console.log("res", res.data);
-  //     })
-  //     .catch((e) => {
-  //       console.log("e", e);
-  //     });
-  // }
+  componentDidMount() {
+    this.getSongLists({
+      limit: 10,
+    });
+  }
+
+  getSongLists(params) {
+    getRecommendSongLists(params)
+      .then((res) => {
+        console.log("api-getRecommendSongLists res", res);
+        if (res.code === OK_CODE) {
+          this.handleSongLists(res.result);
+        }
+      })
+      .catch((e) => {
+        console.log("api-getRecommendSongLists error", e);
+      });
+  }
+  handleSongLists(data) {
+    let list = Array.isArray(data) ? data : [];
+    let songLists = createSongLists(list);
+    console.log("songLists", songLists);
+    this.setState({
+      songLists,
+    });
+  }
 
   render() {
     return (
@@ -39,7 +60,7 @@ export default class Home extends React.Component {
               查看更多
             </a>
           </div>
-          <SongLists></SongLists>
+          <SongLists list={this.state.songLists}></SongLists>
         </section>
       </main>
     );

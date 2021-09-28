@@ -18,7 +18,23 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: skyblue;
+      }
+      .play-counts {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+        color: #fff;
+        .icon {
+          float: left;
+          width: 10px;
+          height: 10px;
+          margin-right: 3px;
+        }
+        .counts {
+          float: left;
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
       .play-btn {
         position: absolute;
