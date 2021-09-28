@@ -23,17 +23,25 @@
     }
   }
   .category-list {
+    display: none;
     margin-top: 10px;
     padding: 8px;
     border-radius: 10px;
     background: #f5f5f7;
+    &.expand {
+      display: block;
+    }
   }
   .category-item {
+    position: relative;
     margin-bottom: 32px;
+    padding-left: 96px;
     overflow: hidden;
   }
   .category-name {
-    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
     margin: 8px 0 0 24px;
     font-size: 24px;
     font-weight: 700;
@@ -41,11 +49,10 @@
     color: #000;
   }
   .sub-list {
-    display: inline-flex;
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-left: 24px;
   }
   .sub-item {
     min-width: 98px;
@@ -61,6 +68,9 @@
       color: #000;
       transition: all 0.2s;
       cursor: pointer;
+      &.hot {
+        color: #335eea;
+      }
       &:hover,
       &.choosed {
         color: #335eea;
