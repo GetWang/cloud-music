@@ -1,15 +1,39 @@
 export class Song {
-  constructor({ id = 0, name = "", coverUrl = "", authorList = [] }) {
+  constructor({
+    id = 0,
+    name = "",
+    coverUrl = "",
+    authorList = [],
+    duration = 0,
+  }) {
     this.id = id;
     this.name = name;
     this.coverUrl = coverUrl;
     this.authorList = authorList;
+    this.duration = duration;
+  }
+
+  get authorNames() {
+    return this.authorList
+      .map((author) => {
+        return author.name;
+      })
+      .join(" / ");
+  }
+  get durationFormat() {
+    let s = Math.floor(this.duration / 1000);
+    let mins = Math.floor(s / 60);
+    let secs = Math.floor(s % 60);
+    return `${mins}:${secs >= 10 ? secs : "0" + secs}`;
   }
 }
 
 export function createSongs(list = []) {
   return list.map((item) => {
-    let aList = item.artists.map((artist) => {
+    let artists = item.artists || item.ar;
+    let album = item.album || item.al;
+    let duration = item.duration || item.dt;
+    let aList = artists.map((artist) => {
       return {
         id: artist.id || 0,
         name: artist.name || "",
@@ -18,8 +42,9 @@ export function createSongs(list = []) {
     return new Song({
       id: item.id,
       name: item.name,
-      coverUrl: item.album.picUrl,
+      coverUrl: album.picUrl,
       authorList: aList,
+      duration,
     });
   });
 }

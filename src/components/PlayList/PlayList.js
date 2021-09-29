@@ -8,23 +8,30 @@ export default class PlayList extends React.Component {
     super(props);
   }
 
+  getPlayItemEls() {
+    return this.props.list.map((item, index) => {
+      return (
+        <li className="play-item" key={`${index}_${item.id}`}>
+          <span className="num">{index + 1}</span>
+          <div className="song-cover">
+            <img className="cover" src={item.coverUrl} alt=""></img>
+            <div className="play-btn">
+              <SvgIcon iconName="play"></SvgIcon>
+            </div>
+          </div>
+          <p className="song-name">{item.name}</p>
+          <p className="author">{item.authorNames}</p>
+          <span className="duration">{item.durationFormat}</span>
+        </li>
+      );
+    });
+  }
+
   render() {
+    let playItemEls = this.getPlayItemEls();
     return (
       <div className="play-list-wrapper">
-        <ul className="play-list">
-          <li className="play-item">
-            <span className="num">1</span>
-            <div className="song-cover">
-              <img className="cover" src=""></img>
-              <div className="play-btn">
-                <SvgIcon iconName="play"></SvgIcon>
-              </div>
-            </div>
-            <p className="song-name">把孤独当做晚餐 (原名：想死却又不敢) </p>
-            <p className="author">G.E.M.邓紫棋</p>
-            <span className="duration">4:08</span>
-          </li>
-        </ul>
+        <ul className="play-list">{playItemEls}</ul>
         <div className="load-more">加载更多</div>
       </div>
     );

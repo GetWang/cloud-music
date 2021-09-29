@@ -6,11 +6,13 @@
     .list-item {
       .cover-wrapper {
         position: relative;
+        display: block;
         height: 0;
         margin-bottom: 10px;
         padding-top: 100%;
         border-radius: 12px;
         overflow: hidden;
+        text-decoration: none;
         cursor: pointer;
         user-select: none;
         .cover {

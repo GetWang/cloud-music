@@ -19,3 +19,13 @@ export function getSongListsByCategory(params = {}) {
       return res.data;
     });
 }
+export function getSongListDetail(params = {}) {
+  const url = API_HOST + "/playlist/detail";
+  return axios
+    .get(url, {
+      params,
+    })
+    .then((res) => {
+      return res.data;
+    });
+}

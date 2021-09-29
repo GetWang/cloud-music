@@ -68,11 +68,7 @@ export default class PersonalFM extends React.Component {
     if (song) {
       name = song.name;
       coverUrl = song.coverUrl;
-      authorNames = song.authorList
-        .map((author) => {
-          return author.name;
-        })
-        .join("/");
+      authorNames = song.authorNames;
     }
     return (
       <div className="personal-fm">

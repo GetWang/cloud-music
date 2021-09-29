@@ -20,7 +20,7 @@ function App() {
           <Route path="/songList">
             <SongList></SongList>
           </Route>
-          <Route path="/song">
+          <Route path="/songListDetail/:id">
             <SongListDetail></SongListDetail>
           </Route>
         </Switch>
