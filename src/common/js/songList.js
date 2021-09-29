@@ -12,7 +12,7 @@ export function createSongLists(list = []) {
     return new SongList({
       id: item.id,
       name: item.name,
-      coverUrl: item.picUrl,
+      coverUrl: item.picUrl || item.coverImgUrl,
       playCount: item.playCount,
     });
   });

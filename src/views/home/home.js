@@ -17,13 +17,14 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.getSongLists({
-      limit: 10,
-    });
+    this.getSongLists();
   }
 
-  getSongLists(params) {
-    getRecommendSongLists(params)
+  getSongLists(params = {}) {
+    let _params = {
+      limit: params.limit || 10,
+    };
+    getRecommendSongLists(_params)
       .then((res) => {
         console.log("api-getRecommendSongLists res", res);
         if (res.code === OK_CODE) {
@@ -44,6 +45,7 @@ export default class Home extends React.Component {
   }
 
   render() {
+    let songLists = this.state.songLists;
     return (
       <main id="home-page">
         <section className="for-you-music">
@@ -60,7 +62,7 @@ export default class Home extends React.Component {
               查看更多
             </a>
           </div>
-          <SongLists list={this.state.songLists}></SongLists>
+          <SongLists list={songLists} total={songLists.length}></SongLists>
         </section>
       </main>
     );

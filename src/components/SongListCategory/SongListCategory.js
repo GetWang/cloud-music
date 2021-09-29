@@ -5,9 +5,10 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import { getSongListCategorys } from "../../api/songList";
 import { OK_CODE } from "../../api/common";
 
-const ALL_CATEGORY = "全部";
-const RECOM_CATEGORY = "推荐歌单";
-const BASE_CATEGORY_LIST = ["全部", RECOM_CATEGORY];
+export const ALL_CATEGORY = "全部";
+export const RECOM_CATEGORY = "推荐歌单";
+
+const BASE_CATEGORY_LIST = [ALL_CATEGORY, RECOM_CATEGORY];
 
 export default class SongListCategory extends React.Component {
   constructor(props) {

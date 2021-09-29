@@ -8,13 +8,14 @@ export default class SongLists extends React.Component {
     super(props);
     this.handlePlay = this.handlePlay.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.handleMore = this.handleMore.bind(this);
   }
 
   getListEls() {
-    return this.props.list.map((item) => {
+    return this.props.list.map((item, index) => {
       let countDesc = this.formatCount(item.playCount);
       return (
-        <div className="list-item" key={item.id}>
+        <li className="list-item" key={`${index}_${item.id}`}>
           <div className="cover-wrapper" onClick={this.handleEnter}>
             <img className="cover" src={item.coverUrl} alt=""></img>
             <div className="play-counts">
@@ -28,7 +29,7 @@ export default class SongLists extends React.Component {
             </div>
           </div>
           <p className="list-name">{item.name}</p>
-        </div>
+        </li>
       );
     });
   }
@@ -42,9 +43,22 @@ export default class SongLists extends React.Component {
   handleEnter(e) {
     console.log("handleEnter");
   }
+  handleMore(e) {
+    console.log("load more");
+    this.props.onMore();
+  }
 
   render() {
     let listEls = this.getListEls();
-    return <div className="song-lists">{listEls}</div>;
+    let isMore = this.props.list.length < this.props.total;
+    let cls = isMore ? "load-more show" : "load-more";
+    return (
+      <div className="song-lists-wrapper">
+        <ul className="song-lists">{listEls}</ul>
+        <div className={cls} onClick={this.handleMore}>
+          加载更多
+        </div>
+      </div>
+    );
   }
 }
