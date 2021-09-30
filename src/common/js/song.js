@@ -1,3 +1,5 @@
+import { padNum } from "./util";
+
 export class Song {
   constructor({
     id = 0,
@@ -24,7 +26,8 @@ export class Song {
     let s = Math.floor(this.duration / 1000);
     let mins = Math.floor(s / 60);
     let secs = Math.floor(s % 60);
-    return `${mins}:${secs >= 10 ? secs : "0" + secs}`;
+    secs = padNum(secs);
+    return `${mins}:${secs}`;
   }
 }
 

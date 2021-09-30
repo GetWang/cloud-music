@@ -8,6 +8,10 @@ export default class PlayList extends React.Component {
     super(props);
   }
 
+  playSingle(song) {
+    console.log("playSingle", song);
+  }
+
   getPlayItemEls() {
     return this.props.list.map((item, index) => {
       return (
@@ -15,7 +19,7 @@ export default class PlayList extends React.Component {
           <span className="num">{index + 1}</span>
           <div className="song-cover">
             <img className="cover" src={item.coverUrl} alt=""></img>
-            <div className="play-btn">
+            <div className="play-btn" onClick={(e) => this.playSingle(item)}>
               <SvgIcon iconName="play"></SvgIcon>
             </div>
           </div>

@@ -79,24 +79,30 @@ export default function SongListDetailView(props) {
   let coverUrl = songLDetail ? songLDetail.coverUrl : "";
   let name = songLDetail ? songLDetail.name : "";
   let desc = songLDetail ? songLDetail.description : "";
+  let creatorName = songLDetail ? songLDetail.creator.nickname : "";
   let songCount = songLDetail ? songLDetail.songCount : 0;
-  let timeNums = `最后更新于 2021年02月01日 · ${songCount} 首歌`;
+  let updateTimeFormat = songLDetail ? songLDetail.updateTimeFormat : "-";
+  let timeNums = `最后更新于 ${updateTimeFormat} · ${songCount} 首歌`;
+
+  function playAll() {
+    console.log("playAll");
+  }
 
   return (
     <main id="song-list-detail-page">
       <div className="song-list-info">
         <div className="cover-wrapper">
           <img className="cover" src={coverUrl} alt=""></img>
-          <div className="play-btn">
+          <div className="play-btn" onClick={playAll}>
             <SvgIcon iconName="play"></SvgIcon>
           </div>
         </div>
         <div className="desc">
           <h1 className="list-name">{name}</h1>
-          <p className="author">歌单 by 云音乐私人雷达</p>
+          <p className="author">歌单 by {creatorName}</p>
           <p className="time-nums">{timeNums}</p>
           <p className="intro">{desc}</p>
-          <div className="play-btn">
+          <div className="play-btn" onClick={playAll}>
             <div className="icon">
               <SvgIcon iconName="play"></SvgIcon>
             </div>
