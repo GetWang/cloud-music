@@ -8,7 +8,7 @@ import { getRecommendSongLists } from "../../api/personal";
 import { OK_CODE } from "../../api/common";
 import { createSongLists } from "../../common/js/songList";
 
-export default class Home extends React.Component {
+export default class HomeView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +58,7 @@ export default class Home extends React.Component {
         <section className="recommend-song-list">
           <div className="title-wrapper">
             <h1 className="title">推荐歌单</h1>
-            <a className="view-more" href="/songList">
+            <a className="view-more" href="/songList?category=推荐歌单">
               查看更多
             </a>
           </div>

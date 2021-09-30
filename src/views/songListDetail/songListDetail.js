@@ -60,7 +60,7 @@ function handleSDetail(data) {
   return songs;
 }
 
-export default function SongListDetail(props) {
+export default function SongListDetailView(props) {
   let { id } = useParams();
   let [songLDetail, setSongLDetail] = useState(null);
   let [songs, setSongs] = useState([]);

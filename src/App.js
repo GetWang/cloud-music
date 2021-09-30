@@ -3,9 +3,9 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import "./App.scss";
 import NavHeader from "./components/NavHeader/NavHeader";
-import Home from "./views/home/home";
-import SongList from "./views/songList/songList";
-import SongListDetail from "./views/songListDetail/songListDetail";
+import HomeView from "./views/home/home";
+import SongListView from "./views/songList/songList";
+import SongListDetailView from "./views/songListDetail/songListDetail";
 
 function App() {
   return (
@@ -15,13 +15,13 @@ function App() {
         <Switch>
           <Redirect exact from="/" to="/home"></Redirect>
           <Route path="/home">
-            <Home></Home>
+            <HomeView></HomeView>
           </Route>
           <Route path="/songList">
-            <SongList></SongList>
+            <SongListView></SongListView>
           </Route>
           <Route path="/songListDetail/:id">
-            <SongListDetail></SongListDetail>
+            <SongListDetailView></SongListDetailView>
           </Route>
         </Switch>
       </BrowserRouter>

@@ -12,17 +12,12 @@ export default class DailyRecommend extends React.Component {
     this.state = {
       songs: [],
       recommendCover: "",
-      playing: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.getSongs();
-  }
-
-  getIconName() {
-    return this.state.playing ? "pause" : "play";
   }
 
   getSongs() {
@@ -59,15 +54,10 @@ export default class DailyRecommend extends React.Component {
     });
   }
   handleClick(e) {
-    this.setState((state) => {
-      return {
-        playing: !state.playing,
-      };
-    });
+    console.log("play");
   }
 
   render() {
-    let iconName = this.getIconName();
     return (
       <div className="daily-recommend">
         <img
@@ -77,7 +67,7 @@ export default class DailyRecommend extends React.Component {
         ></img>
         <h2 className="left-title">每日推荐</h2>
         <div className="play-btn" onClick={this.handleClick}>
-          <SvgIcon iconName={iconName}></SvgIcon>
+          <SvgIcon iconName="play"></SvgIcon>
         </div>
       </div>
     );

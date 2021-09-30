@@ -14,7 +14,7 @@ export default class SongListCategory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currCateName: ALL_CATEGORY,
+      currCateName: props.initCate || ALL_CATEGORY,
       showList: BASE_CATEGORY_LIST.slice(),
       categorys: [],
       isCatesExpand: false,
