@@ -6,6 +6,7 @@ import NavHeader from "./components/NavHeader/NavHeader";
 import HomeView from "./views/home/home";
 import SongListView from "./views/songList/songList";
 import SongListDetailView from "./views/songListDetail/songListDetail";
+import Player from "./components/Player/Player";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
+      <Player></Player>
     </div>
   );
 }
