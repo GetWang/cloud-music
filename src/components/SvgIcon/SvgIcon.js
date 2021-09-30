@@ -9,11 +9,7 @@ export default class SvgIcon extends React.Component {
       case "arrow-left":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="fas"
-            data-icon="angle-left"
-            className="svg-icon svg-inline--fa fa-angle-left fa-w-8"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 512"
           >
@@ -27,11 +23,7 @@ export default class SvgIcon extends React.Component {
       case "arrow-right":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="fas"
-            data-icon="angle-right"
-            className="svg-icon svg-inline--fa fa-angle-right fa-w-8"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 512"
           >
@@ -42,14 +34,32 @@ export default class SvgIcon extends React.Component {
           </svg>
         );
         break;
+      case "arrow-up":
+        svgEl = (
+          <svg
+            className="svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z" />
+          </svg>
+        );
+        break;
+      case "arrow-down":
+        svgEl = (
+          <svg
+            className="svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" />
+          </svg>
+        );
+        break;
       case "play":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="fas"
-            data-icon="play"
-            className="svg-icon svg-inline--fa fa-play fa-w-14"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
@@ -63,11 +73,7 @@ export default class SvgIcon extends React.Component {
       case "pause":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="fas"
-            data-icon="pause"
-            className="svg-icon svg-inline--fa fa-pause fa-w-14"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
@@ -81,11 +87,7 @@ export default class SvgIcon extends React.Component {
       case "prev":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="fas"
-            data-icon="step-backward"
-            className="svg-icon svg-inline--fa fa-step-backward fa-w-14"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
@@ -99,11 +101,7 @@ export default class SvgIcon extends React.Component {
       case "next":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="fas"
-            data-icon="step-forward"
-            className="svg-icon svg-inline--fa fa-step-forward fa-w-14"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
@@ -117,13 +115,9 @@ export default class SvgIcon extends React.Component {
       case "fm":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="far"
-            data-icon="radio-alt"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
-            className="svg-icon svg-inline--fa fa-radio-alt fa-w-16 fa-7x"
           >
             <path
               fill="currentColor"
@@ -135,17 +129,56 @@ export default class SvgIcon extends React.Component {
       case "more":
         svgEl = (
           <svg
-            focusable="false"
-            data-prefix="far"
-            data-icon="ellipsis-h"
-            role="img"
+            className="svg-icon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
-            className="svg-icon svg-inline--fa fa-ellipsis-h fa-w-16 fa-9x"
           >
             <path
               fill="currentColor"
               d="M304 256c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm120-48c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48zm-336 0c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48z"
+            ></path>
+          </svg>
+        );
+        break;
+      case "play-list":
+        svgEl = (
+          <svg
+            className="svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M16 256h256a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm0-128h256a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16zm128 192H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM470.94 1.33l-96.53 28.51A32 32 0 0 0 352 60.34V360a148.76 148.76 0 0 0-48-8c-61.86 0-112 35.82-112 80s50.14 80 112 80 112-35.82 112-80V148.15l73-21.39a32 32 0 0 0 23-30.71V32a32 32 0 0 0-41.06-30.67z"
+            ></path>
+          </svg>
+        );
+        break;
+      case "volume":
+        svgEl = (
+          <svg
+            class="svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 480 512"
+          >
+            <path
+              fill="currentColor"
+              d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.53 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"
+              class=""
+            ></path>
+          </svg>
+        );
+        break;
+      case "volume-mute":
+        svgEl = (
+          <svg
+            class="svg-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zM461.64 256l45.64-45.64c6.3-6.3 6.3-16.52 0-22.82l-22.82-22.82c-6.3-6.3-16.52-6.3-22.82 0L416 210.36l-45.64-45.64c-6.3-6.3-16.52-6.3-22.82 0l-22.82 22.82c-6.3 6.3-6.3 16.52 0 22.82L370.36 256l-45.63 45.63c-6.3 6.3-6.3 16.52 0 22.82l22.82 22.82c6.3 6.3 16.52 6.3 22.82 0L416 301.64l45.64 45.64c6.3 6.3 16.52 6.3 22.82 0l22.82-22.82c6.3-6.3 6.3-16.52 0-22.82L461.64 256z"
             ></path>
           </svg>
         );
