@@ -13,6 +13,7 @@ export default class Player extends React.Component {
     return (
       <div className="music-player">
         <MiniPlayer></MiniPlayer>
+        <LargePlayer></LargePlayer>
       </div>
     );
   }
