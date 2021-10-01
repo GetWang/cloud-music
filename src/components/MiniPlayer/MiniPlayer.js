@@ -32,7 +32,9 @@ export default class MiniPlayer extends React.Component {
   handlePrevSong() {}
   togglePlayList() {}
   handleMute() {}
-  expandLargePlayer() {}
+  expandLargePlayer() {
+    this.props.onExpand();
+  }
 
   render() {
     let playIconName = this.getPlayIconName();
