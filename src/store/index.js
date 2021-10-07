@@ -5,6 +5,7 @@ import {
   playListReducer,
   currIndexReducer,
   volumeReducer,
+  isFmOnReducer,
 } from "./slices";
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     playList: playListReducer,
     currIndex: currIndexReducer,
     volume: volumeReducer,
+    isFmOn: isFmOnReducer,
   },
 });
 

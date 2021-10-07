@@ -10,3 +10,5 @@ export {
 } from "./currIndexSlice";
 
 export { default as volumeReducer, setVolume } from "./volumeSlice";
+
+export { default as isFmOnReducer, changeFmOn } from "./isFmOnSlice";

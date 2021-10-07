@@ -9,3 +9,5 @@ export const selectCurrSong = (state) => {
 };
 
 export const selectVolume = (state) => state.volume;
+
+export const selectIsFmOn = (state) => state.isFmOn;

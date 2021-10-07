@@ -92,7 +92,6 @@ export default function SongListView(props) {
     pageSize: 30,
   };
   const playing = useSelector(selectPlaying);
-  console.log("playing", playing);
   const dispatch = useDispatch();
 
   let [songLists, setSongLists] = useState([]);
@@ -121,9 +120,6 @@ export default function SongListView(props) {
 
   return (
     <main id="song-list-page">
-      <h1 onClick={() => dispatch(changePlaying(!playing))}>
-        123{String(playing)}
-      </h1>
       <div className="category-wrapper">
         <SongListCategory
           initCate={gData.currCateName}
