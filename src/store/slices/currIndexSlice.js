@@ -13,6 +13,7 @@ const currIndexSlice = createSlice({
       return state + 1;
     },
     setCurrIndex(state, action) {
+      console.log("action.payload", action.payload);
       return action.payload;
     },
   },
