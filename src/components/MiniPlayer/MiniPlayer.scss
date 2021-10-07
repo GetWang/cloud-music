@@ -1,4 +1,6 @@
 .mini-music-player {
+  position: relative;
+  z-index: 2;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(180%) blur(30px);
   .progress-bar {
@@ -112,6 +114,9 @@
       transition: all 0.2s;
       &:hover {
         background: #f2f2f4;
+      }
+      &.list.expand {
+        color: #335eea;
       }
     }
     .volume-bar {

@@ -8,6 +8,8 @@ export default class MiniPlayer extends React.Component {
     super(props);
     this.state = {
       playing: false,
+      isListExpand: false,
+      isMute: false,
     };
     this.handlePlay = this.handlePlay.bind(this);
     this.handleNextSong = this.handleNextSong.bind(this);
@@ -20,6 +22,12 @@ export default class MiniPlayer extends React.Component {
   getPlayIconName() {
     return this.state.playing ? "pause" : "play";
   }
+  getPlayListCls() {
+    return this.state.isListExpand ? "btn list expand" : "btn list";
+  }
+  getMuteIconName() {
+    return this.state.isMute ? "volume-mute" : "volume";
+  }
 
   handlePlay(e) {
     this.setState((state) => {
@@ -30,14 +38,30 @@ export default class MiniPlayer extends React.Component {
   }
   handleNextSong() {}
   handlePrevSong() {}
-  togglePlayList() {}
-  handleMute() {}
+  togglePlayList() {
+    this.setState((state) => {
+      let flag = !state.isListExpand;
+      this.props.onListExpand(flag);
+      return {
+        isListExpand: flag,
+      };
+    });
+  }
+  handleMute() {
+    this.setState((state) => {
+      return {
+        isMute: !state.isMute,
+      };
+    });
+  }
   expandLargePlayer() {
     this.props.onExpand();
   }
 
   render() {
     let playIconName = this.getPlayIconName();
+    let playListCls = this.getPlayListCls();
+    let muteIconName = this.getMuteIconName();
     return (
       <div className="mini-music-player">
         <div className="progress-bar">
@@ -47,9 +71,14 @@ export default class MiniPlayer extends React.Component {
         </div>
         <div className="info-controls">
           <div className="left-song-info">
-            <img className="cover" src="" alt=""></img>
+            <img
+              className="cover"
+              src=""
+              alt=""
+              onClick={this.expandLargePlayer}
+            ></img>
             <div className="desc">
-              <p className="song-name">
+              <p className="song-name" onClick={this.expandLargePlayer}>
                 盛夏的果实盛夏的果实盛夏的果实盛夏的果实
               </p>
               <p className="author-name">莫文蔚</p>
@@ -76,14 +105,14 @@ export default class MiniPlayer extends React.Component {
           </div>
           <div className="right-controls">
             <div
-              className="btn list"
+              className={playListCls}
               onClick={this.togglePlayList}
               title="播放列表"
             >
               <SvgIcon iconName="play-list"></SvgIcon>
             </div>
             <div className="btn mute" onClick={this.handleMute} title="">
-              <SvgIcon iconName="volume"></SvgIcon>
+              <SvgIcon iconName={muteIconName}></SvgIcon>
             </div>
             <div className="volume-bar">
               <div className="line-bar">
