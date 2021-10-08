@@ -13,6 +13,7 @@ export class Song {
     this.coverUrl = coverUrl;
     this.authorList = authorList;
     this.duration = duration;
+    this.url = `https://music.163.com/song/media/outer/url?id=${id}`;
 
     this.authorNames = authorList
       .map((author) => {

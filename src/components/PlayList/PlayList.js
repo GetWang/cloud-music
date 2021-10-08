@@ -9,6 +9,7 @@ import {
   changePlaying,
   setPlayList,
   setCurrIndex,
+  setCurrTime,
 } from "../../store/slices";
 import { selectPlaying, selectCurrSong } from "../../store/selectors";
 
@@ -55,6 +56,7 @@ export default function PlayList(props) {
       dispatch(changeFmOn(false));
       dispatch(setPlayList(simplifyList([song])));
       dispatch(setCurrIndex(0));
+      dispatch(setCurrTime(0));
       dispatch(changePlaying(true));
     }
   }

@@ -12,6 +12,7 @@ import {
   changePlaying,
   setPlayList,
   setCurrIndex,
+  setCurrTime,
 } from "../../store/slices";
 import {
   selectIsFmOn,
@@ -73,6 +74,7 @@ export default function PersonalFM(props) {
       dispatch(changeFmOn(true));
       dispatch(setPlayList(songsSimplified));
       dispatch(setCurrIndex(0));
+      dispatch(setCurrTime(0));
     }
     dispatch(changePlaying(!innerPlaying));
   };
@@ -83,6 +85,7 @@ export default function PersonalFM(props) {
     if (isFmOn) {
       const index = Math.max(0, innerCurrIndex - 1);
       dispatch(setCurrIndex(index));
+      dispatch(setCurrTime(0));
       dispatch(changePlaying(true));
     }
   };
@@ -96,6 +99,7 @@ export default function PersonalFM(props) {
     }
     const index = Math.min(innerCurrIndex + 1, songs.length - 1);
     dispatch(setCurrIndex(index));
+    dispatch(setCurrTime(0));
     dispatch(changePlaying(true));
   };
 

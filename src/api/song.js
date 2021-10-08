@@ -12,3 +12,14 @@ export function getSongDetail(params = {}) {
       return res.data;
     });
 }
+
+export function getSongUrl(params = {}) {
+  const url = API_HOST + "/song/url";
+  return axios
+    .get(url, {
+      params,
+    })
+    .then((res) => {
+      return res.data;
+    });
+}

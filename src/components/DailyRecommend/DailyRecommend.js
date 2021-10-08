@@ -7,7 +7,12 @@ import { getDailyRecommendSongs } from "../../api/personal";
 import { OK_CODE } from "../../api/common";
 import { createSongs } from "../../common/js/song";
 import { simplifyList } from "../../common/js/util";
-import { changePlaying, setPlayList, setCurrIndex } from "../../store/slices";
+import {
+  changePlaying,
+  setPlayList,
+  setCurrIndex,
+  setCurrTime,
+} from "../../store/slices";
 
 let getSongs = function () {
   return getDailyRecommendSongs()
@@ -65,6 +70,7 @@ export default function DailyRecommend(props) {
     console.log("play");
     dispatch(setPlayList(simplifyList(songs)));
     dispatch(setCurrIndex(0));
+    dispatch(setCurrTime(0));
     dispatch(changePlaying(true));
   };
 

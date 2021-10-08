@@ -16,6 +16,7 @@ import {
   changePlaying,
   setPlayList,
   setCurrIndex,
+  setCurrTime,
 } from "../../store/slices";
 
 function getSListDetail(params = {}) {
@@ -99,6 +100,7 @@ export default function SongListDetailView(props) {
     dispatch(changeFmOn(false));
     dispatch(setPlayList(songsSimplified));
     dispatch(setCurrIndex(0));
+    dispatch(setCurrTime(0));
     dispatch(changePlaying(true));
   }
 

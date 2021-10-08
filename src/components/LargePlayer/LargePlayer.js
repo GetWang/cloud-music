@@ -2,6 +2,7 @@ import React from "react";
 
 import "./LargePlayer.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import { formatSongTime } from "../../common/js/util";
 
 export default function LargePlayer(props) {
   function handlePlay() {
@@ -29,6 +30,7 @@ export default function LargePlayer(props) {
   const songName = song ? song.name : "";
   const authorNames = song ? song.authorNames : "";
   const coverUrl = song ? song.coverUrl : "";
+  const timeFormat = formatSongTime(props.time);
   const durationFormat = song ? song.durationFormat : "";
 
   let list = [];
@@ -58,7 +60,7 @@ export default function LargePlayer(props) {
           <p className="song-name">{songName}</p>
           <p className="author-name">{authorNames}</p>
           <div className="progress-info">
-            <span className="curr-time">1:30</span>
+            <span className="curr-time">{timeFormat}</span>
             <div className="progress-bar">
               <div className="line-bar">
                 <div className="circle"></div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./MiniPlayer.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import { formatSongTime } from "../../common/js/util";
 
 export default function MiniPlayer(props) {
   const [isMute, setIsMute] = useState(false);
@@ -39,12 +40,13 @@ export default function MiniPlayer(props) {
   const songName = song ? song.name : "";
   const authorNames = song ? song.authorNames : "";
   const coverUrl = song ? song.coverUrl : "";
+  const timeFormat = formatSongTime(props.time);
 
   return (
     <div className="mini-music-player">
       <div className="progress-bar">
         <div className="line-bar">
-          <div className="circle"></div>
+          <div className="circle" title={timeFormat}></div>
         </div>
       </div>
       <div className="info-controls">
