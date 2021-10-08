@@ -31,7 +31,7 @@ function getSListDetail(params = {}) {
     });
 }
 function handleSListDetail(data) {
-  let idList = data.trackIds.slice(0, 10).map((item) => {
+  let idList = data.trackIds.slice(0, 30).map((item) => {
     return item.id;
   });
   console.log("idList", idList);

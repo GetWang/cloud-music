@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "./songListDetail.scss";
 import PlayList from "../../components/PlayList/PlayList";
@@ -9,6 +10,13 @@ import { getSongDetail } from "../../api/song";
 import { OK_CODE } from "../../api/common";
 import { createSongLists } from "../../common/js/songList";
 import { createSongs } from "../../common/js/song";
+import { simplifyList } from "../../common/js/util";
+import {
+  changeFmOn,
+  changePlaying,
+  setPlayList,
+  setCurrIndex,
+} from "../../store/slices";
 
 function getSListDetail(params = {}) {
   let _params = {
@@ -27,7 +35,7 @@ function getSListDetail(params = {}) {
 }
 function handleSListDetail(data) {
   let detailIns = createSongLists([data])[0];
-  let idList = data.trackIds.slice(0, 10).map((item) => {
+  let idList = data.trackIds.slice(0, 30).map((item) => {
     return item.id;
   });
   console.log("ins", detailIns);
@@ -61,9 +69,11 @@ function handleSDetail(data) {
 }
 
 export default function SongListDetailView(props) {
-  let { id } = useParams();
-  let [songLDetail, setSongLDetail] = useState(null);
-  let [songs, setSongs] = useState([]);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [songLDetail, setSongLDetail] = useState(null);
+  const [songs, setSongs] = useState([]);
+  const songsSimplified = simplifyList(songs);
 
   useEffect(() => {
     getSListDetail({ id })
@@ -86,6 +96,10 @@ export default function SongListDetailView(props) {
 
   function playAll() {
     console.log("playAll");
+    dispatch(changeFmOn(false));
+    dispatch(setPlayList(songsSimplified));
+    dispatch(setCurrIndex(0));
+    dispatch(changePlaying(true));
   }
 
   return (
