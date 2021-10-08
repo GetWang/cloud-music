@@ -16,6 +16,7 @@ import {
 import {
   selectIsFmOn,
   selectPlaying,
+  selectCurrIndex,
   selectCurrSong,
 } from "../../store/selectors";
 
@@ -42,12 +43,17 @@ let handleSongs = function (data) {
 
 export default function PersonalFM(props) {
   const dispatch = useDispatch();
-  let [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState([]);
   const playing = useSelector(selectPlaying);
+  const currIndex = useSelector(selectCurrIndex);
   const currSong = useSelector(selectCurrSong);
   const isFmOn = useSelector(selectIsFmOn);
-  let innerPlaying = isFmOn && playing;
-  let innerCurrSong = isFmOn ? currSong : songs[0] || null;
+
+  const innerPlaying = isFmOn && playing;
+  const innerCurrIndex = isFmOn ? currIndex : 0;
+  const innerCurrSong = isFmOn ? currSong : songs[0] || null;
+  const prevDisabled = innerCurrIndex === 0;
+  const nextDisabled = innerCurrIndex === songs.length - 1;
 
   useEffect(() => {
     getSongs().then((data) => {
@@ -55,17 +61,42 @@ export default function PersonalFM(props) {
     });
   }, []);
 
-  let handlePlay = function (e) {
-    dispatch(changeFmOn(true));
-    dispatch(setPlayList(simplifyList(songs)));
-    dispatch(setCurrIndex(0));
-    dispatch(changePlaying(!playing));
+  let handlePlay = function () {
+    if (!isFmOn) {
+      dispatch(changeFmOn(true));
+      dispatch(setPlayList(simplifyList(songs)));
+      dispatch(setCurrIndex(0));
+    }
+    dispatch(changePlaying(!innerPlaying));
   };
-  let handleNextSong = function () {};
-  let handlePrevSong = function () {};
+  let handlePrevSong = function () {
+    if (prevDisabled) {
+      return;
+    }
+    if (isFmOn) {
+      const index = Math.max(0, innerCurrIndex - 1);
+      dispatch(setCurrIndex(index));
+      dispatch(changePlaying(true));
+    }
+  };
+  let handleNextSong = function () {
+    if (nextDisabled) {
+      return;
+    }
+    if (!isFmOn) {
+      dispatch(changeFmOn(true));
+      dispatch(setPlayList(simplifyList(songs)));
+    }
+    const index = Math.min(innerCurrIndex + 1, songs.length - 1);
+    dispatch(setCurrIndex(index));
+    dispatch(changePlaying(true));
+  };
 
-  let playIconName = innerPlaying ? "pause" : "play";
-  let song = innerCurrSong;
+  const playIconName = innerPlaying ? "pause" : "play";
+  const playBtnTitle = innerPlaying ? "暂停" : "播放";
+  const prevBtnCls = prevDisabled ? "btn prev disabled" : "btn prev";
+  const nextBtnCls = nextDisabled ? "btn next disabled" : "btn next";
+  const song = innerCurrSong;
   let name = "";
   let coverUrl = "";
   let authorNames = "";
@@ -82,13 +113,13 @@ export default function PersonalFM(props) {
         <p className="singer-name">{authorNames}</p>
         <div className="control">
           <div className="btns">
-            <div className="btn prev" onClick={handlePrevSong} title="上一首">
+            <div className={prevBtnCls} onClick={handlePrevSong} title="上一首">
               <SvgIcon iconName="prev"></SvgIcon>
             </div>
-            <div className="btn play" onClick={handlePlay}>
+            <div className="btn play" onClick={handlePlay} title={playBtnTitle}>
               <SvgIcon iconName={playIconName}></SvgIcon>
             </div>
-            <div className="btn next" onClick={handleNextSong} title="下一首">
+            <div className={nextBtnCls} onClick={handleNextSong} title="下一首">
               <SvgIcon iconName="next"></SvgIcon>
             </div>
           </div>

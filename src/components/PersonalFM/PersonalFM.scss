@@ -64,6 +64,9 @@
         &.play {
           padding: 8px 7px 8px 9px;
         }
+        &.disabled {
+          cursor: not-allowed;
+        }
       }
       .fm-mark {
         float: right;
