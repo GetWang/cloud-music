@@ -1,4 +1,4 @@
-import { padNum } from "./util";
+import { formatSongTime } from "./util";
 
 export class Song {
   constructor({
@@ -13,21 +13,13 @@ export class Song {
     this.coverUrl = coverUrl;
     this.authorList = authorList;
     this.duration = duration;
-  }
 
-  get authorNames() {
-    return this.authorList
+    this.authorNames = authorList
       .map((author) => {
         return author.name;
       })
       .join(" / ");
-  }
-  get durationFormat() {
-    let s = Math.floor(this.duration / 1000);
-    let mins = Math.floor(s / 60);
-    let secs = Math.floor(s % 60);
-    secs = padNum(secs);
-    return `${mins}:${secs}`;
+    this.durationFormat = formatSongTime(duration);
   }
 }
 

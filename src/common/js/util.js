@@ -3,6 +3,14 @@ export function padNum(num) {
   return prefix + num;
 }
 
+export function formatSongTime(ms) {
+  let s = Math.floor(ms / 1000);
+  let mins = Math.floor(s / 60);
+  let secs = Math.floor(s % 60);
+  secs = padNum(secs);
+  return `${mins}:${secs}`;
+}
+
 export function simplifyList(list) {
   return list.map((item) => {
     return { ...item };
