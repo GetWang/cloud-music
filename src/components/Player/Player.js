@@ -86,7 +86,15 @@ export default function Player(props) {
         onExpand={handleExpand}
       ></MiniPlayer>
       <LargePlayer
+        playing={playing}
+        song={currSong}
         isExpand={isExpand}
+        playDisabled={playDisabled}
+        prevDisabled={prevDisabled}
+        nextDisabled={nextDisabled}
+        onPrev={goPrevSong}
+        onNext={goNextSong}
+        onPlay={playSong}
         onCollapse={handleCollapse}
       ></LargePlayer>
       <section className={playListCls}>
