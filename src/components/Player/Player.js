@@ -1,56 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./Player.scss";
 import MiniPlayer from "../MiniPlayer/MiniPlayer";
 import LargePlayer from "../LargePlayer/LargePlayer";
 import PlayList from "../PlayList/PlayList";
+import { selectPlayList } from "../../store/selectors";
 
-export default class Player extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isListExpand: false,
-      isExpand: false,
-    };
-    this.handleListExpand = this.handleListExpand.bind(this);
-    this.handleExpand = this.handleExpand.bind(this);
-    this.handleCollapse = this.handleCollapse.bind(this);
-  }
+export default function Player(props) {
+  const [isListExpand, setIsListExpand] = useState(false);
+  const [isExpand, setIsExpand] = useState(false);
+  const playList = useSelector(selectPlayList);
 
-  handleListExpand(flag) {
-    this.setState({
-      isListExpand: flag,
-    });
+  function handleListExpand(flag) {
+    setIsListExpand(flag);
   }
-  handleExpand() {
-    this.setState({
-      isExpand: true,
-    });
+  function handleExpand() {
+    setIsExpand(true);
   }
-  handleCollapse() {
-    this.setState({
-      isExpand: false,
-    });
+  function handleCollapse() {
+    setIsExpand(false);
   }
 
-  render() {
-    let playListCls = this.state.isListExpand
-      ? "player-play-list expand"
-      : "player-play-list";
-    return (
-      <div className="music-player">
-        <MiniPlayer
-          onExpand={this.handleExpand}
-          onListExpand={this.handleListExpand}
-        ></MiniPlayer>
-        <LargePlayer
-          isExpand={this.state.isExpand}
-          onCollapse={this.handleCollapse}
-        ></LargePlayer>
-        <section className={playListCls}>
-          <PlayList list={[]}></PlayList>
-        </section>
-      </div>
-    );
-  }
+  let playListCls = isListExpand
+    ? "player-play-list expand"
+    : "player-play-list";
+
+  return (
+    <div className="music-player">
+      <MiniPlayer
+        onExpand={handleExpand}
+        onListExpand={handleListExpand}
+      ></MiniPlayer>
+      <LargePlayer
+        isExpand={isExpand}
+        onCollapse={handleCollapse}
+      ></LargePlayer>
+      <section className={playListCls}>
+        <PlayList list={playList}></PlayList>
+      </section>
+    </div>
+  );
 }

@@ -71,6 +71,15 @@
         visibility: visible;
       }
     }
+    &.current {
+      background: #eaeffd;
+      .num,
+      .song-name,
+      .author,
+      .duration {
+        color: #335eea;
+      }
+    }
   }
   .load-more {
     width: 76px;

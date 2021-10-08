@@ -1,26 +1,42 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./PlayList.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import { simplifyList } from "../../common/js/util";
+import {
+  changeFmOn,
+  changePlaying,
+  setPlayList,
+  setCurrIndex,
+} from "../../store/slices";
+import { selectPlaying, selectCurrSong } from "../../store/selectors";
 
-export default class PlayList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default function PlayList(props) {
+  const dispatch = useDispatch();
+  const playing = useSelector(selectPlaying);
+  const currSong = useSelector(selectCurrSong);
+  const currSongId = currSong ? currSong.id : 0;
 
-  playSingle(song) {
-    console.log("playSingle", song);
-  }
-
-  getPlayItemEls() {
-    return this.props.list.map((item, index) => {
+  function getPlayItemEls() {
+    return props.list.map((item, index) => {
+      const id = item.id;
+      const flag1 = id === currSongId;
+      const flag2 = flag1 && playing;
+      const cls = flag1 ? "play-item current" : "play-item";
+      const playIconName = flag2 ? "pause" : "play";
+      const playBtnTitle = flag2 ? "暂停" : "播放";
       return (
-        <li className="play-item" key={`${index}_${item.id}`}>
+        <li className={cls} key={`${index}_${id}`}>
           <span className="num">{index + 1}</span>
           <div className="song-cover">
             <img className="cover" src={item.coverUrl} alt=""></img>
-            <div className="play-btn" onClick={() => this.playSingle(item)}>
-              <SvgIcon iconName="play"></SvgIcon>
+            <div
+              className="play-btn"
+              onClick={() => playSingle(item)}
+              title={playBtnTitle}
+            >
+              <SvgIcon iconName={playIconName}></SvgIcon>
             </div>
           </div>
           <p className="song-name">{item.name}</p>
@@ -31,13 +47,24 @@ export default class PlayList extends React.Component {
     });
   }
 
-  render() {
-    let playItemEls = this.getPlayItemEls();
-    return (
-      <div className="play-list-wrapper">
-        <ul className="play-list">{playItemEls}</ul>
-        <div className="load-more">加载更多</div>
-      </div>
-    );
+  function playSingle(song) {
+    console.log("playSingle", song);
+    if (song.id === currSongId) {
+      dispatch(changePlaying(!playing));
+    } else {
+      dispatch(changeFmOn(false));
+      dispatch(setPlayList(simplifyList([song])));
+      dispatch(setCurrIndex(0));
+      dispatch(changePlaying(true));
+    }
   }
+
+  let playItemEls = getPlayItemEls();
+
+  return (
+    <div className="play-list-wrapper">
+      <ul className="play-list">{playItemEls}</ul>
+      {/* <div className="load-more">加载更多</div> */}
+    </div>
+  );
 }
