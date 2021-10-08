@@ -19,6 +19,9 @@ let getSongs = function () {
     })
     .catch((e) => {
       console.log("api-getDailyRecommendSongs error", e);
+      return {
+        error: true,
+      };
     });
 };
 let handleSongs = function (data) {
@@ -50,6 +53,9 @@ export default function DailyRecommend(props) {
 
   useEffect(() => {
     getSongs().then((data) => {
+      if (data.error) {
+        return;
+      }
       setSongs(data.songs);
       setRecommendCover(data.recommendCover);
     });

@@ -30,6 +30,9 @@ let getSongs = function () {
     })
     .catch((e) => {
       console.log("api-getPersonalizedFmSongs error", e);
+      return {
+        error: true,
+      };
     });
 };
 let handleSongs = function (data) {
@@ -58,6 +61,9 @@ export default function PersonalFM(props) {
 
   useEffect(() => {
     getSongs().then((data) => {
+      if (data.error) {
+        return;
+      }
       setSongs(data.songs);
     });
   }, []);

@@ -1,134 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./MiniPlayer.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
 
-export default class MiniPlayer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playing: false,
-      isListExpand: false,
-      isMute: false,
-    };
-    this.handlePlay = this.handlePlay.bind(this);
-    this.handleNextSong = this.handleNextSong.bind(this);
-    this.handlePrevSong = this.handlePrevSong.bind(this);
-    this.togglePlayList = this.togglePlayList.bind(this);
-    this.handleMute = this.handleMute.bind(this);
-    this.expandLargePlayer = this.expandLargePlayer.bind(this);
-  }
+export default function MiniPlayer(props) {
+  const [isMute, setIsMute] = useState(false);
 
-  getPlayIconName() {
-    return this.state.playing ? "pause" : "play";
+  function handlePlay() {
+    props.onPlay();
   }
-  getPlayListCls() {
-    return this.state.isListExpand ? "btn list expand" : "btn list";
+  function handlePrevSong() {
+    props.onPrev();
   }
-  getMuteIconName() {
-    return this.state.isMute ? "volume-mute" : "volume";
+  function handleNextSong() {
+    props.onNext();
   }
-
-  handlePlay(e) {
-    this.setState((state) => {
-      return {
-        playing: !state.playing,
-      };
+  function togglePlayList() {
+    props.onListExpand();
+  }
+  function handleMute() {
+    setIsMute((flag) => {
+      return !flag;
     });
   }
-  handleNextSong() {}
-  handlePrevSong() {}
-  togglePlayList() {
-    this.setState((state) => {
-      let flag = !state.isListExpand;
-      this.props.onListExpand(flag);
-      return {
-        isListExpand: flag,
-      };
-    });
-  }
-  handleMute() {
-    this.setState((state) => {
-      return {
-        isMute: !state.isMute,
-      };
-    });
-  }
-  expandLargePlayer() {
-    this.props.onExpand();
+  function expandLargePlayer() {
+    props.onExpand();
   }
 
-  render() {
-    let playIconName = this.getPlayIconName();
-    let playListCls = this.getPlayListCls();
-    let muteIconName = this.getMuteIconName();
-    return (
-      <div className="mini-music-player">
-        <div className="progress-bar">
-          <div className="line-bar">
-            <div className="circle"></div>
+  const playIconName = props.playing ? "pause" : "play";
+  const playBtnTitle = props.playing ? "暂停" : "播放";
+  const playBtnCls = props.playDisabled ? "btn play disabled" : "btn play";
+  const prevBtnCls = props.prevDisabled ? "btn prev disabled" : "btn prev";
+  const nextBtnCls = props.nextDisabled ? "btn next disabled" : "btn next";
+  const playListCls = props.isListExpand ? "btn list expand" : "btn list";
+  const muteIconName = isMute ? "volume-mute" : "volume";
+
+  const song = props.song;
+  const songName = song ? song.name : "";
+  const authorNames = song ? song.authorNames : "";
+  const coverUrl = song ? song.coverUrl : "";
+
+  return (
+    <div className="mini-music-player">
+      <div className="progress-bar">
+        <div className="line-bar">
+          <div className="circle"></div>
+        </div>
+      </div>
+      <div className="info-controls">
+        <div className="left-song-info">
+          <img
+            className="cover"
+            src={coverUrl}
+            alt=""
+            onClick={expandLargePlayer}
+          ></img>
+          <div className="desc">
+            <p className="song-name" onClick={expandLargePlayer}>
+              {songName}
+            </p>
+            <p className="author-name">{authorNames}</p>
           </div>
         </div>
-        <div className="info-controls">
-          <div className="left-song-info">
-            <img
-              className="cover"
-              src=""
-              alt=""
-              onClick={this.expandLargePlayer}
-            ></img>
-            <div className="desc">
-              <p className="song-name" onClick={this.expandLargePlayer}>
-                盛夏的果实盛夏的果实盛夏的果实盛夏的果实
-              </p>
-              <p className="author-name">莫文蔚</p>
+        <div className="center-controls">
+          <div className={prevBtnCls} onClick={handlePrevSong} title="上一首">
+            <SvgIcon iconName="prev"></SvgIcon>
+          </div>
+          <div className={playBtnCls} onClick={handlePlay} title={playBtnTitle}>
+            <SvgIcon iconName={playIconName}></SvgIcon>
+          </div>
+          <div className={nextBtnCls} onClick={handleNextSong} title="下一首">
+            <SvgIcon iconName="next"></SvgIcon>
+          </div>
+        </div>
+        <div className="right-controls">
+          <div
+            className={playListCls}
+            onClick={togglePlayList}
+            title="播放列表"
+          >
+            <SvgIcon iconName="play-list"></SvgIcon>
+          </div>
+          <div className="btn mute" onClick={handleMute} title="">
+            <SvgIcon iconName={muteIconName}></SvgIcon>
+          </div>
+          <div className="volume-bar">
+            <div className="line-bar">
+              <div className="circle"></div>
             </div>
           </div>
-          <div className="center-controls">
-            <div
-              className="btn prev"
-              onClick={this.handlePrevSong}
-              title="上一首"
-            >
-              <SvgIcon iconName="prev"></SvgIcon>
-            </div>
-            <div className="btn play" onClick={this.handlePlay}>
-              <SvgIcon iconName={playIconName}></SvgIcon>
-            </div>
-            <div
-              className="btn next"
-              onClick={this.handleNextSong}
-              title="下一首"
-            >
-              <SvgIcon iconName="next"></SvgIcon>
-            </div>
-          </div>
-          <div className="right-controls">
-            <div
-              className={playListCls}
-              onClick={this.togglePlayList}
-              title="播放列表"
-            >
-              <SvgIcon iconName="play-list"></SvgIcon>
-            </div>
-            <div className="btn mute" onClick={this.handleMute} title="">
-              <SvgIcon iconName={muteIconName}></SvgIcon>
-            </div>
-            <div className="volume-bar">
-              <div className="line-bar">
-                <div className="circle"></div>
-              </div>
-            </div>
-            <div
-              className="btn expand"
-              onClick={this.expandLargePlayer}
-              title="歌词"
-            >
-              <SvgIcon iconName="arrow-up"></SvgIcon>
-            </div>
+          <div className="btn expand" onClick={expandLargePlayer} title="歌词">
+            <SvgIcon iconName="arrow-up"></SvgIcon>
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }

@@ -48,7 +48,6 @@
       box-shadow: 0 6px 8px -2px rgba(0, 0, 0, 0.16);
       user-select: none;
       cursor: pointer;
-      background: skyblue;
     }
     .desc {
       margin-left: 12px;
@@ -94,6 +93,10 @@
         width: 42px;
         height: 42px;
         padding: 8px 7px 8px 9px;
+      }
+      &.disabled {
+        opacity: 0.38;
+        cursor: not-allowed;
       }
     }
   }
