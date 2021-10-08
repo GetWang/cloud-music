@@ -19,7 +19,7 @@ export default class PlayList extends React.Component {
           <span className="num">{index + 1}</span>
           <div className="song-cover">
             <img className="cover" src={item.coverUrl} alt=""></img>
-            <div className="play-btn" onClick={(e) => this.playSingle(item)}>
+            <div className="play-btn" onClick={() => this.playSingle(item)}>
               <SvgIcon iconName="play"></SvgIcon>
             </div>
           </div>

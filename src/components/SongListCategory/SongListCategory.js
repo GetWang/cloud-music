@@ -86,7 +86,7 @@ export default class SongListCategory extends React.Component {
         <li
           className={cls}
           key={item}
-          onClick={(e) => {
+          onClick={() => {
             this.chooseCategory(item);
           }}
         >
@@ -102,7 +102,7 @@ export default class SongListCategory extends React.Component {
         <li
           className={cls}
           key="more"
-          onClick={(e) => {
+          onClick={() => {
             this.handleCatesExpand();
           }}
         >
@@ -133,7 +133,7 @@ export default class SongListCategory extends React.Component {
         <li className="sub-item" key={name}>
           <span
             className={cls}
-            onClick={(e) => {
+            onClick={() => {
               this.chooseCategory(name);
             }}
           >

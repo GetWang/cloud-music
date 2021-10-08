@@ -22,7 +22,7 @@ export default class LargePlayer extends React.Component {
     return this.props.isExpand ? "expand" : "";
   }
 
-  handlePlay(e) {
+  handlePlay() {
     this.setState((state) => {
       return {
         playing: !state.playing,

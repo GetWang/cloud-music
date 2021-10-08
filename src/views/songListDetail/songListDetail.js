@@ -55,7 +55,7 @@ function getSDetail(params = {}) {
 }
 function handleSDetail(data) {
   let list = Array.isArray(data) ? data : [];
-  let songs = createSongs(data);
+  let songs = createSongs(list);
   console.log("songs", songs);
   return songs;
 }
@@ -67,12 +67,12 @@ export default function SongListDetailView(props) {
 
   useEffect(() => {
     getSListDetail({ id })
-      .then((res) => {
-        setSongLDetail(res.ins);
-        return getSDetail({ ids: res.ids });
+      .then((data) => {
+        setSongLDetail(data.ins);
+        return getSDetail({ ids: data.ids });
       })
-      .then((res) => {
-        setSongs(res);
+      .then((data) => {
+        setSongs(data);
       });
   }, []);
 

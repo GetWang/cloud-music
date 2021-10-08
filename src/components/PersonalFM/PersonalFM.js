@@ -54,6 +54,7 @@ export default function PersonalFM(props) {
   const innerCurrSong = isFmOn ? currSong : songs[0] || null;
   const prevDisabled = innerCurrIndex === 0;
   const nextDisabled = innerCurrIndex === songs.length - 1;
+  const songsSimplified = simplifyList(songs);
 
   useEffect(() => {
     getSongs().then((data) => {
@@ -64,7 +65,7 @@ export default function PersonalFM(props) {
   let handlePlay = function () {
     if (!isFmOn) {
       dispatch(changeFmOn(true));
-      dispatch(setPlayList(simplifyList(songs)));
+      dispatch(setPlayList(songsSimplified));
       dispatch(setCurrIndex(0));
     }
     dispatch(changePlaying(!innerPlaying));
@@ -85,7 +86,7 @@ export default function PersonalFM(props) {
     }
     if (!isFmOn) {
       dispatch(changeFmOn(true));
-      dispatch(setPlayList(simplifyList(songs)));
+      dispatch(setPlayList(songsSimplified));
     }
     const index = Math.min(innerCurrIndex + 1, songs.length - 1);
     dispatch(setCurrIndex(index));

@@ -1,18 +1,74 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import "./SongLists.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import { getSongListDetail } from "../../api/songList";
+import { getSongDetail } from "../../api/song";
+import { OK_CODE } from "../../api/common";
+import { createSongs } from "../../common/js/song";
+import { simplifyList } from "../../common/js/util";
+import {
+  changeFmOn,
+  changePlaying,
+  setPlayList,
+  setCurrIndex,
+} from "../../store/slices";
 
-export default class SongLists extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handlePlay = this.handlePlay.bind(this);
-    this.handleMore = this.handleMore.bind(this);
-  }
+function getSListDetail(params = {}) {
+  let _params = {
+    id: params.id,
+  };
+  return getSongListDetail(_params)
+    .then((res) => {
+      console.log("api-getSongListDetail res", res);
+      if (res.code === OK_CODE) {
+        return handleSListDetail(res.playlist);
+      }
+    })
+    .catch((e) => {
+      console.log("api-getSongListDetail error", e);
+    });
+}
+function handleSListDetail(data) {
+  let idList = data.trackIds.slice(0, 10).map((item) => {
+    return item.id;
+  });
+  console.log("idList", idList);
+  return idList.join(",");
+}
 
-  getListEls() {
-    return this.props.list.map((item, index) => {
-      let countDesc = this.formatCount(item.playCount);
+function getSDetail(params = {}) {
+  let _params = {
+    ids: params.ids,
+  };
+  return getSongDetail(_params)
+    .then((res) => {
+      console.log("api-getSongDetail res", res);
+      if (res.code === OK_CODE) {
+        return handleSDetail(res.songs);
+      }
+    })
+    .catch((e) => {
+      console.log("api-getSongDetail error", e);
+    });
+}
+function handleSDetail(data) {
+  let list = Array.isArray(data) ? data : [];
+  let songs = createSongs(list);
+  console.log("songs", songs);
+  return songs;
+}
+
+function formatCount(count) {
+  return count >= 10000 ? (count / 10000).toFixed(1) + "万" : count;
+}
+
+export default function SongLists(props) {
+  const dispatch = useDispatch();
+  let getListEls = function () {
+    return props.list.map((item, index) => {
+      let countDesc = formatCount(item.playCount);
       let id = item.id;
       let href = `/songListDetail/${id}`;
       return (
@@ -20,12 +76,16 @@ export default class SongLists extends React.Component {
           <a className="cover-wrapper" href={href}>
             <img className="cover" src={item.coverUrl} alt=""></img>
             <div className="play-counts">
-              <div className="icon">
+              <div className="icon" title="播放">
                 <SvgIcon iconName="play"></SvgIcon>
               </div>
               <span className="counts">{countDesc}</span>
             </div>
-            <div className="play-btn" onClick={this.handlePlay} title="播放">
+            <div
+              className="play-btn"
+              onClick={(e) => handlePlay(e, id)}
+              title="播放"
+            >
               <SvgIcon iconName="play"></SvgIcon>
             </div>
           </a>
@@ -33,31 +93,36 @@ export default class SongLists extends React.Component {
         </li>
       );
     });
-  }
-  formatCount(count) {
-    return count >= 10000 ? (count / 10000).toFixed(1) + "万" : count;
-  }
-  handlePlay(e) {
+  };
+  let handlePlay = function (e, id) {
     e.stopPropagation();
     e.preventDefault();
     console.log("handlePlay");
-  }
-  handleMore(e) {
+    getSListDetail({ id })
+      .then((ids) => {
+        return getSDetail({ ids });
+      })
+      .then((list) => {
+        dispatch(changeFmOn(false));
+        dispatch(setPlayList(simplifyList(list)));
+        dispatch(setCurrIndex(0));
+        dispatch(changePlaying(true));
+      });
+  };
+  let handleMore = function () {
     console.log("load more");
-    this.props.onMore();
-  }
+    props.onMore();
+  };
 
-  render() {
-    let listEls = this.getListEls();
-    let isMore = this.props.list.length < this.props.total;
-    let cls = isMore ? "load-more show" : "load-more";
-    return (
-      <div className="song-lists-wrapper">
-        <ul className="song-lists">{listEls}</ul>
-        <div className={cls} onClick={this.handleMore}>
-          加载更多
-        </div>
+  let listEls = getListEls();
+  let isMore = props.list.length < props.total;
+  let cls = isMore ? "load-more show" : "load-more";
+  return (
+    <div className="song-lists-wrapper">
+      <ul className="song-lists">{listEls}</ul>
+      <div className={cls} onClick={handleMore}>
+        加载更多
       </div>
-    );
-  }
+    </div>
+  );
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 import "./songList.scss";
 import SongListCategory, {
@@ -12,8 +11,6 @@ import { getRecommendSongLists } from "../../api/personal";
 import { getSongListsByCategory } from "../../api/songList";
 import { OK_CODE } from "../../api/common";
 import { createSongLists } from "../../common/js/songList";
-import { changePlaying } from "../../store/slices";
-import { selectPlaying } from "../../store/selectors";
 
 let getSongLists = function (name) {
   console.log("name", name);
@@ -91,8 +88,6 @@ export default function SongListView(props) {
     page: 1,
     pageSize: 30,
   };
-  const playing = useSelector(selectPlaying);
-  const dispatch = useDispatch();
 
   let [songLists, setSongLists] = useState([]);
   let [total, setTotal] = useState(0);
