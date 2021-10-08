@@ -7,7 +7,7 @@ const playListSlice = createSlice({
   initialState,
   reducers: {
     setPlayList(state, action) {
-      console.log("action.payload", action.payload);
+      console.log("setPlayList", action.payload);
       return action.payload;
     },
   },

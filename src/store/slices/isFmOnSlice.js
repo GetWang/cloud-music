@@ -7,7 +7,7 @@ const isFmOnSlice = createSlice({
   initialState,
   reducers: {
     changeFmOn(state, action) {
-      console.log("action.payload", action.payload);
+      console.log("changeFmOn", action.payload);
       return action.payload;
     },
   },

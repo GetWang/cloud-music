@@ -7,13 +7,15 @@ const currIndexSlice = createSlice({
   initialState,
   reducers: {
     goPrevIndex(state) {
+      console.log("goPrevIndex", state - 1);
       return state - 1;
     },
     goNextIndex(state) {
+      console.log("goNextIndex", state + 1);
       return state + 1;
     },
     setCurrIndex(state, action) {
-      console.log("action.payload", action.payload);
+      console.log("setCurrIndex", action.payload);
       return action.payload;
     },
   },

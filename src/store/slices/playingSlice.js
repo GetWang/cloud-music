@@ -7,7 +7,7 @@ const playingSlice = createSlice({
   initialState,
   reducers: {
     changePlaying(state, action) {
-      console.log("action.payload", action.payload);
+      console.log("changePlaying", action.payload);
       return action.payload;
     },
   },

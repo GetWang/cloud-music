@@ -7,6 +7,7 @@ const volumeSlice = createSlice({
   initialState,
   reducers: {
     setVolume(state, action) {
+      console.log("setVolume", action.payload);
       return action.payload;
     },
   },

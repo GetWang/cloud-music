@@ -9,6 +9,8 @@ export {
   setCurrIndex,
 } from "./currIndexSlice";
 
+export { default as currTimeReducer, setCurrTime } from "./currTimeSlice";
+
 export { default as volumeReducer, setVolume } from "./volumeSlice";
 
 export { default as isFmOnReducer, changeFmOn } from "./isFmOnSlice";

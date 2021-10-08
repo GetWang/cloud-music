@@ -8,6 +8,8 @@ export const selectCurrSong = (state) => {
   return state.playList[state.currIndex] || null;
 };
 
+export const selectCurrTime = (state) => state.currTime;
+
 export const selectVolume = (state) => state.volume;
 
 export const selectIsFmOn = (state) => state.isFmOn;
