@@ -3,6 +3,10 @@ export function padNum(num) {
   return prefix + num;
 }
 
+export function judgeNumInRegion(num, min, max) {
+  return Math.min(max, Math.max(min, num));
+}
+
 export function formatSongTime(ms) {
   let s = Math.floor(ms / 1000);
   let mins = Math.floor(s / 60);

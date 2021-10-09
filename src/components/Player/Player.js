@@ -32,6 +32,9 @@ export default function Player(props) {
   const audioRef = React.createRef();
 
   const songUrl = currSong ? currSong.url : "";
+  const rate = currSong
+    ? parseFloat(currTime / currSong.duration).toFixed(3)
+    : 0;
   const len = playList.length;
   const isEmpty = len === 0;
   const playDisabled = isEmpty;
@@ -86,6 +89,10 @@ export default function Player(props) {
     dispatch(setCurrTime(0));
     dispatch(changePlaying(true));
   }
+  function handleRateChange(rate) {
+    const s = Math.floor(rate * currSong.duration) / 1000;
+    audioRef.current.currentTime = s;
+  }
   function handleListExpand() {
     setIsListExpand((flag) => {
       return !flag;
@@ -97,6 +104,9 @@ export default function Player(props) {
   function handleCollapse() {
     setIsExpand(false);
   }
+  function test() {
+    audioRef.current.currentTime = 15;
+  }
 
   const playerCls = currSong ? "music-player show" : "music-player";
   const playListCls = isListExpand
@@ -105,10 +115,12 @@ export default function Player(props) {
 
   return (
     <div className={playerCls}>
+      <h1 onClick={test}>test</h1>
       <MiniPlayer
         playing={playing}
         song={currSong}
         time={currTime}
+        rate={rate}
         isListExpand={isListExpand}
         playDisabled={playDisabled}
         prevDisabled={prevDisabled}
@@ -116,6 +128,7 @@ export default function Player(props) {
         onPrev={goPrevSong}
         onNext={goNextSong}
         onPlay={playSong}
+        onRateChange={handleRateChange}
         onListExpand={handleListExpand}
         onExpand={handleExpand}
       ></MiniPlayer>

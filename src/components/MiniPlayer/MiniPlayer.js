@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./MiniPlayer.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSongTime } from "../../common/js/util";
 
 export default function MiniPlayer(props) {
@@ -15,6 +16,9 @@ export default function MiniPlayer(props) {
   }
   function handleNextSong() {
     props.onNext();
+  }
+  function handleRateChange(rate) {
+    props.onRateChange(rate);
   }
   function togglePlayList() {
     props.onListExpand();
@@ -44,11 +48,18 @@ export default function MiniPlayer(props) {
 
   return (
     <div className="mini-music-player">
-      <div className="progress-bar">
+      <ProgressBar
+        rate={props.rate}
+        height="2"
+        barColor="#335eea"
+        progressInfo={timeFormat}
+        onRateChange={handleRateChange}
+      ></ProgressBar>
+      {/* <div className="progress-bar">
         <div className="line-bar">
           <div className="circle" title={timeFormat}></div>
         </div>
-      </div>
+      </div> */}
       <div className="info-controls">
         <div className="left-song-info">
           <img

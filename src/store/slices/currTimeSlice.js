@@ -7,7 +7,7 @@ const currTimeSlice = createSlice({
   initialState,
   reducers: {
     setCurrTime(state, action) {
-      console.log("setCurrTime", action.payload);
+      // console.log("setCurrTime", action.payload);
       return action.payload;
     },
   },
