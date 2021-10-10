@@ -10,6 +10,7 @@ import {
   goPrevIndex,
   goNextIndex,
   setCurrTime,
+  setVolume,
 } from "../../store/slices";
 import {
   selectPlaying,
@@ -17,11 +18,14 @@ import {
   selectCurrIndex,
   selectCurrSong,
   selectCurrTime,
+  selectVolume,
 } from "../../store/selectors";
 
 export default function Player(props) {
   const dispatch = useDispatch();
+  const [prevVolume, setPrevVolume] = useState(0);
   const [isAudioReady, setAudioReady] = useState(false);
+  const [isMute, setIsMute] = useState(false);
   const [isListExpand, setIsListExpand] = useState(false);
   const [isExpand, setIsExpand] = useState(false);
   const playList = useSelector(selectPlayList);
@@ -29,18 +33,24 @@ export default function Player(props) {
   const currIndex = useSelector(selectCurrIndex);
   const currSong = useSelector(selectCurrSong);
   const currTime = useSelector(selectCurrTime);
+  const volume = useSelector(selectVolume);
   const audioRef = React.createRef();
 
   const songUrl = currSong ? currSong.url : "";
   const rate = currSong
     ? parseFloat(currTime / currSong.duration).toFixed(3)
     : 0;
+  const volumeRate = parseFloat((volume / 100).toFixed(2));
   const len = playList.length;
   const isEmpty = len === 0;
   const playDisabled = isEmpty;
   const prevDisabled = isEmpty || currIndex === 0;
   const nextDisabled = isEmpty || currIndex === len - 1;
 
+  useEffect(() => {
+    audioRef.current.volume = volumeRate;
+    setPrevVolume(volume);
+  }, []);
   useEffect(() => {
     if (isAudioReady && playing) {
       audioRef.current.play();
@@ -94,6 +104,26 @@ export default function Player(props) {
     audioRef.current.currentTime = s;
     dispatch(changePlaying(true));
   }
+  function handleVolRateChange(rate) {
+    const vol = Math.floor(rate * 100);
+    audioRef.current.volume = parseFloat(rate.toFixed(2));
+    dispatch(setVolume(vol));
+    setPrevVolume(vol);
+    vol === 0 && setIsMute(false);
+  }
+  function handleMute() {
+    let vol;
+    if (isMute) {
+      vol = prevVolume;
+    } else {
+      vol = 0;
+    }
+    audioRef.current.volume = parseFloat((vol / 100).toFixed(2));
+    dispatch(setVolume(vol));
+    setIsMute((flag) => {
+      return !flag;
+    });
+  }
   function handleListExpand() {
     setIsListExpand((flag) => {
       return !flag;
@@ -118,6 +148,9 @@ export default function Player(props) {
         song={currSong}
         time={currTime}
         rate={rate}
+        volume={volume}
+        volumeRate={volumeRate}
+        isMute={isMute}
         isListExpand={isListExpand}
         playDisabled={playDisabled}
         prevDisabled={prevDisabled}
@@ -126,6 +159,8 @@ export default function Player(props) {
         onNext={goNextSong}
         onPlay={playSong}
         onRateChange={handleRateChange}
+        onVolRateChange={handleVolRateChange}
+        onMute={handleMute}
         onListExpand={handleListExpand}
         onExpand={handleExpand}
       ></MiniPlayer>

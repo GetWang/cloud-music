@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./MiniPlayer.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
@@ -6,8 +6,6 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSongTime } from "../../common/js/util";
 
 export default function MiniPlayer(props) {
-  const [isMute, setIsMute] = useState(false);
-
   function handlePlay() {
     props.onPlay();
   }
@@ -24,9 +22,10 @@ export default function MiniPlayer(props) {
     props.onListExpand();
   }
   function handleMute() {
-    setIsMute((flag) => {
-      return !flag;
-    });
+    props.onMute();
+  }
+  function handleVolRateChange(rate) {
+    props.onVolRateChange(rate);
   }
   function expandLargePlayer() {
     props.onExpand();
@@ -38,7 +37,8 @@ export default function MiniPlayer(props) {
   const prevBtnCls = props.prevDisabled ? "btn prev disabled" : "btn prev";
   const nextBtnCls = props.nextDisabled ? "btn next disabled" : "btn next";
   const playListCls = props.isListExpand ? "btn list expand" : "btn list";
-  const muteIconName = isMute ? "volume-mute" : "volume";
+  const muteIconName = props.isMute ? "volume-mute" : "volume";
+  const muteBtnTitle = props.isMute ? "取消静音" : "静音";
 
   const song = props.song;
   const songName = song ? song.name : "";
@@ -89,13 +89,17 @@ export default function MiniPlayer(props) {
           >
             <SvgIcon iconName="play-list"></SvgIcon>
           </div>
-          <div className="btn mute" onClick={handleMute} title="">
+          <div className="btn mute" onClick={handleMute} title={muteBtnTitle}>
             <SvgIcon iconName={muteIconName}></SvgIcon>
           </div>
           <div className="volume-bar">
-            <div className="line-bar">
-              <div className="circle"></div>
-            </div>
+            <ProgressBar
+              rate={props.volumeRate}
+              height="4"
+              barColor="#000"
+              progressInfo={props.volume}
+              onRateChange={handleVolRateChange}
+            ></ProgressBar>
           </div>
           <div className="btn expand" onClick={expandLargePlayer} title="歌词">
             <SvgIcon iconName="arrow-up"></SvgIcon>
