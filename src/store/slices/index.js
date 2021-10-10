@@ -1,6 +1,10 @@
 export { default as playingReducer, changePlaying } from "./playingSlice";
 
-export { default as playListReducer, setPlayList } from "./playListSlice";
+export {
+  default as playListReducer,
+  setPlayList,
+  replaceSongInPlayList,
+} from "./playListSlice";
 
 export {
   default as currIndexReducer,

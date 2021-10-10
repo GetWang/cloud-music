@@ -23,3 +23,14 @@ export function getSongUrl(params = {}) {
       return res.data;
     });
 }
+
+export function getSongLyric(params = {}) {
+  const url = API_HOST + "/lyric";
+  return axios
+    .get(url, {
+      params,
+    })
+    .then((res) => {
+      return res.data;
+    });
+}

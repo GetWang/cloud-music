@@ -5,8 +5,11 @@ import "./Player.scss";
 import MiniPlayer from "../MiniPlayer/MiniPlayer";
 import LargePlayer from "../LargePlayer/LargePlayer";
 import PlayList from "../PlayList/PlayList";
+import { getSongLyric } from "../../api/song";
+import { OK_CODE } from "../../api/common";
 import {
   changePlaying,
+  replaceSongInPlayList,
   goPrevIndex,
   goNextIndex,
   setCurrTime,
@@ -59,6 +62,33 @@ export default function Player(props) {
       audioRef.current.pause();
     }
   }, [isAudioReady, playing]);
+  useEffect(() => {
+    if (currIndex >= 0 && !currSong.lyric) {
+      const params = {
+        id: currSong.id,
+      };
+      getSongLyric(params)
+        .then((res) => {
+          console.log("api-getSongLyric res", res);
+          if (res.code === OK_CODE) {
+            const song = {
+              ...currSong,
+              lyric: res.lrc ? res.lrc.lyric : "",
+              tLyric: res.tlyric ? res.tlyric.lyric : "",
+            };
+            dispatch(
+              replaceSongInPlayList({
+                index: currIndex,
+                song,
+              })
+            );
+          }
+        })
+        .catch((e) => {
+          console.log("api-getSongLyric error", e);
+        });
+    }
+  }, [currIndex]);
 
   function handleAudioReady() {
     setAudioReady(true);

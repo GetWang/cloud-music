@@ -16,14 +16,12 @@ export default function ProgressBar(props) {
   const lineBarRef = React.createRef();
 
   useEffect(() => {
-    const el = progressBarRef.current;
-    setProgressBarWidth(el.clientWidth);
-    setProgressBarLeft(el.getBoundingClientRect().left);
-  }, []);
-  useEffect(() => {
     if (!btnMouseInfo.downFlag) {
       const el = progressBarRef.current;
-      const width = props.rate * el.clientWidth;
+      const w = el.clientWidth;
+      setProgressBarWidth(w);
+      setProgressBarLeft(el.getBoundingClientRect().left);
+      const width = props.rate * w;
       _offset(width);
     }
   }, [props.rate]);

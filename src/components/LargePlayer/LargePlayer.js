@@ -37,24 +37,22 @@ export default function LargePlayer(props) {
   const timeFormat = formatSongTime(props.time);
   const durationFormat = song ? song.durationFormat : "";
 
-  let list = [];
-  let item;
-  for (let i = 0; i < 10; i++) {
-    if (i === 2) {
-      item = (
-        <li className="lyric-item current" key={i}>
-          <p className="text">这盛夏的果实</p>
-        </li>
-      );
-    } else {
-      item = (
-        <li className="lyric-item" key={i}>
-          <p className="text">这盛夏的果实 回忆里寂寞的香气</p>
-        </li>
-      );
-    }
-    list.push(item);
-  }
+  let lyric = song ? song.lyric : "";
+  lyric = lyric.replace(/\[[^\[\]]*\] ?/g, "");
+  const lyricList = lyric.split("\n");
+  const lyricElList = lyricList.map((text, i) => {
+    const cls = text ? "lyric-item" : "lyric-item empty";
+    return (
+      <li className={cls} key={i}>
+        <p className="text">{text}</p>
+      </li>
+    );
+  });
+  const rightLyricEl = lyric ? (
+    <div className="right-lyric">
+      <ul className="lyric-list">{lyricElList}</ul>
+    </div>
+  ) : null;
 
   return (
     <div className={playerCls}>
@@ -93,9 +91,7 @@ export default function LargePlayer(props) {
           </div>
         </div>
       </div>
-      <div className="right-lyric">
-        <ul className="lyric-list">{list}</ul>
-      </div>
+      {rightLyricEl}
       <div className="collapse-btn" onClick={collapsePlayer}>
         <SvgIcon iconName="arrow-down"></SvgIcon>
       </div>

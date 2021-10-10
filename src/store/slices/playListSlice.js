@@ -10,9 +10,14 @@ const playListSlice = createSlice({
       console.log("setPlayList", action.payload);
       return action.payload;
     },
+    replaceSongInPlayList(state, action) {
+      const payload = action.payload;
+      console.log("replaceSongInPlayList", payload);
+      state.splice(payload.index, 1, payload.song);
+    },
   },
 });
 
-export const { setPlayList } = playListSlice.actions;
+export const { setPlayList, replaceSongInPlayList } = playListSlice.actions;
 
 export default playListSlice.reducer;
