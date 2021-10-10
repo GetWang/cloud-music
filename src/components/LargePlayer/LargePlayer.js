@@ -2,6 +2,7 @@ import React from "react";
 
 import "./LargePlayer.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatSongTime } from "../../common/js/util";
 
 export default function LargePlayer(props) {
@@ -13,6 +14,9 @@ export default function LargePlayer(props) {
   }
   function handleNextSong() {
     props.onNext();
+  }
+  function handleRateChange(rate) {
+    props.onRateChange(rate);
   }
   function collapsePlayer() {
     props.onCollapse();
@@ -61,10 +65,14 @@ export default function LargePlayer(props) {
           <p className="author-name">{authorNames}</p>
           <div className="progress-info">
             <span className="curr-time">{timeFormat}</span>
-            <div className="progress-bar">
-              <div className="line-bar">
-                <div className="circle"></div>
-              </div>
+            <div className="progress-bar-wrapper">
+              <ProgressBar
+                rate={props.rate}
+                height="4"
+                barColor="#000"
+                progressInfo={timeFormat}
+                onRateChange={handleRateChange}
+              ></ProgressBar>
             </div>
             <span className="duration">{durationFormat}</span>
           </div>

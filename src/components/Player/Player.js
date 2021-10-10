@@ -105,9 +105,6 @@ export default function Player(props) {
   function handleCollapse() {
     setIsExpand(false);
   }
-  function test() {
-    audioRef.current.currentTime = 15;
-  }
 
   const playerCls = currSong ? "music-player show" : "music-player";
   const playListCls = isListExpand
@@ -116,7 +113,6 @@ export default function Player(props) {
 
   return (
     <div className={playerCls}>
-      <h1 onClick={test}>test</h1>
       <MiniPlayer
         playing={playing}
         song={currSong}
@@ -137,6 +133,7 @@ export default function Player(props) {
         playing={playing}
         song={currSong}
         time={currTime}
+        rate={rate}
         isExpand={isExpand}
         playDisabled={playDisabled}
         prevDisabled={prevDisabled}
@@ -144,6 +141,7 @@ export default function Player(props) {
         onPrev={goPrevSong}
         onNext={goNextSong}
         onPlay={playSong}
+        onRateChange={handleRateChange}
         onCollapse={handleCollapse}
       ></LargePlayer>
       <section className={playListCls}>

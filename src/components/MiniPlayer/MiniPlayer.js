@@ -55,11 +55,6 @@ export default function MiniPlayer(props) {
         progressInfo={timeFormat}
         onRateChange={handleRateChange}
       ></ProgressBar>
-      {/* <div className="progress-bar">
-        <div className="line-bar">
-          <div className="circle" title={timeFormat}></div>
-        </div>
-      </div> */}
       <div className="info-controls">
         <div className="left-song-info">
           <img

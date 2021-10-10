@@ -3,30 +3,6 @@
   z-index: 2;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(180%) blur(30px);
-  .progress-bar9 {
-    height: 2px;
-    background: rgba(128, 128, 128, 0.18);
-    cursor: pointer;
-    .line-bar {
-      position: relative;
-      width: 0;
-      width: 200px;
-      height: 100%;
-      background: #335eea;
-    }
-    .circle {
-      position: absolute;
-      top: -5px;
-      right: -6px;
-      width: 12px;
-      height: 12px;
-      border: 3px solid #fff;
-      border-radius: 50%;
-      box-sizing: border-box;
-      box-shadow: 0 0 0 1px #d0d0d0;
-      background: #335eea;
-    }
-  }
   .info-controls {
     display: flex;
     justify-content: flex-start;
