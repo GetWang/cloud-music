@@ -92,6 +92,7 @@ export default function Player(props) {
   function handleRateChange(rate) {
     const s = Math.floor(rate * currSong.duration) / 1000;
     audioRef.current.currentTime = s;
+    dispatch(changePlaying(true));
   }
   function handleListExpand() {
     setIsListExpand((flag) => {

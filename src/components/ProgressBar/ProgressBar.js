@@ -1,36 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./ProgressBar.scss";
 import { judgeNumInRegion } from "../../common/js/util";
 
 export default function ProgressBar(props) {
-  const progressBarRef = React.createRef();
-  const lineBarRef = React.createRef();
-  let progressBarWidth = 0;
-  let initLineBarWidth = 0;
-  let liveLineBarWidth = 0;
-  let btnMouseInfo = {
+  const [progressBarWidth, setProgressBarWidth] = useState(0);
+  const [initLineBarWidth, setInitLineBarWidth] = useState(0);
+  const [liveLineBarWidth, setLiveLineBarWidth] = useState(0);
+  const [progressBarLeft, setProgressBarLeft] = useState(0);
+  const [btnMouseInfo, setBtnMouseInfo] = useState({
     downFlag: false,
     startX: 0,
-  };
+  });
+  const progressBarRef = React.createRef();
+  const lineBarRef = React.createRef();
 
   useEffect(() => {
     if (!btnMouseInfo.downFlag) {
-      progressBarWidth = progressBarRef.current.clientWidth;
+      const el = progressBarRef.current;
+      setProgressBarWidth(el.clientWidth);
+      setProgressBarLeft(el.getBoundingClientRect().left);
       const width = props.rate * progressBarWidth;
       _offset(width);
     }
   }, [props.rate]);
 
+  function chooseProgress(e) {
+    const width = e.pageX - progressBarLeft;
+    const w = judgeNumInRegion(width, 0, progressBarWidth);
+    _triggerRateChange(w);
+  }
   function handleBtnMouseDown(e) {
     console.log("handleBtnMouseDown");
-    initLineBarWidth = lineBarRef.current.clientWidth;
-    liveLineBarWidth = initLineBarWidth;
+    const width = lineBarRef.current.clientWidth;
+    setInitLineBarWidth(width);
+    setLiveLineBarWidth(width);
     console.log("1111", liveLineBarWidth);
-    btnMouseInfo = {
+    setBtnMouseInfo({
       downFlag: true,
       startX: e.pageX,
-    };
+    });
   }
   function handleBtnMouseMove(e) {
     if (!btnMouseInfo.downFlag) {
@@ -39,15 +48,16 @@ export default function ProgressBar(props) {
     console.log("handleBtnMouseMove");
     const deltaX = e.pageX - btnMouseInfo.startX;
     const width = initLineBarWidth + deltaX;
-    liveLineBarWidth = judgeNumInRegion(width, 0, progressBarWidth);
-    _offset(liveLineBarWidth);
+    const w = judgeNumInRegion(width, 0, progressBarWidth);
+    setLiveLineBarWidth(w);
+    _offset(w);
   }
   function handleBtnMouseUp() {
     console.log("handleBtnMouseUp");
-    btnMouseInfo = {
+    setBtnMouseInfo({
       downFlag: false,
       startX: 0,
-    };
+    });
     console.log("222", liveLineBarWidth);
     _triggerRateChange(liveLineBarWidth);
   }
@@ -67,7 +77,12 @@ export default function ProgressBar(props) {
   const lineBarStyle = { ...bgStyle, ...radiusStyle };
 
   return (
-    <div className="progress-bar" ref={progressBarRef} style={progressBarStyle}>
+    <div
+      className="progress-bar"
+      ref={progressBarRef}
+      style={progressBarStyle}
+      onClick={chooseProgress}
+    >
       <div className="line-bar" ref={lineBarRef} style={lineBarStyle}>
         <div
           className="circle"
