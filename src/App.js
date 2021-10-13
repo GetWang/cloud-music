@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./App.scss";
 import NavHeader from "./components/NavHeader/NavHeader";
@@ -7,10 +8,14 @@ import HomeView from "./views/home/home";
 import SongListView from "./views/songList/songList";
 import SongListDetailView from "./views/songListDetail/songListDetail";
 import Player from "./components/Player/Player";
+import { selectTheme } from "./store/selectors";
 
 function App() {
+  const theme = useSelector(selectTheme);
+  const appCls = `theme-${theme}`;
+
   return (
-    <div id="app">
+    <div id="app" className={appCls}>
       <BrowserRouter>
         <NavHeader></NavHeader>
         <Switch>

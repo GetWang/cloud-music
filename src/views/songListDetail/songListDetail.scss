@@ -59,7 +59,6 @@
         font-size: 36px;
         font-weight: 700;
         line-height: 50px;
-        color: #000;
       }
       .author {
         margin-top: 24px;
@@ -68,14 +67,12 @@
         line-height: 25px;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: #000;
         opacity: 0.88;
       }
       .time-nums {
         margin-top: 2px;
         font-size: 14px;
         line-height: 20px;
-        color: #000;
         opacity: 0.68;
       }
       .intro {
@@ -84,7 +81,6 @@
         overflow: hidden;
         font-size: 14px;
         line-height: 20px;
-        color: #000;
         opacity: 0.88;
       }
       .play-btn {
@@ -95,8 +91,8 @@
         margin-top: 32px;
         padding: 8px 16px;
         border-radius: 8px;
-        color: #335eea;
-        background: #eaeffd;
+        color: var(--color-primary);
+        background: var(--color-primary-bg);
         transition: all 0.2s;
         transform-origin: center center;
         cursor: pointer;

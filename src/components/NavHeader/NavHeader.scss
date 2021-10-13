@@ -9,7 +9,7 @@
   align-items: center;
   height: 64px;
   padding: 0 5vw;
-  background: rgba(255, 255, 255, 0.86);
+  background: var(--color-navheader-bg);
   backdrop-filter: saturate(180%) blur(20px);
   user-select: none;
   .nav-btns {
@@ -26,7 +26,7 @@
         margin-right: 8px;
       }
       &:hover {
-        background: #f2f2f4;
+        background: var(--color-secondary-bg-for-transparent);
       }
     }
   }
@@ -40,12 +40,12 @@
       font-weight: 700;
       line-height: 22px;
       text-decoration: none;
-      color: #000;
+      color: var(--color-text);
       transition: all 0.2s;
       &:hover,
       &.active {
-        color: #335eea;
-        background: #f2f2f4;
+        color: var(--color-primary);
+        background: var(--color-secondary-bg-for-transparent);
       }
     }
   }
@@ -58,7 +58,7 @@
     transition: all 0.2s;
     cursor: pointer;
     &:hover {
-      background: #f2f2f4;
+      background: var(--color-secondary-bg-for-transparent);
     }
   }
 }

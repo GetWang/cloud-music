@@ -7,7 +7,6 @@
     font-size: 28px;
     font-weight: 700;
     line-height: 34px;
-    color: #000;
   }
   .for-you-music {
     margin-bottom: 54px;
@@ -38,7 +37,7 @@
         font-size: 13px;
         line-height: 18px;
         text-decoration: none;
-        color: #000;
+        color: var(--color-text);
         &:hover {
           text-decoration: underline;
         }

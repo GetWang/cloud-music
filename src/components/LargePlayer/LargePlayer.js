@@ -67,7 +67,7 @@ export default function LargePlayer(props) {
               <ProgressBar
                 rate={props.rate}
                 height="4"
-                barColor="#000"
+                barColor="#335eea"
                 progressInfo={timeFormat}
                 onRateChange={handleRateChange}
               ></ProgressBar>

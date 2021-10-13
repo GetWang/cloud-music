@@ -70,7 +70,6 @@
         font-size: 16px;
         font-weight: 600;
         line-height: 20px;
-        color: #000;
       }
     }
   }
@@ -85,8 +84,7 @@
     font-weight: 600;
     line-height: 24px;
     text-align: center;
-    color: #000;
-    background: #f2f2f4;
+    background: var(--color-secondary-bg-for-transparent);
     opacity: 0.78;
     transform-origin: center center;
     transition: all 0.2s;

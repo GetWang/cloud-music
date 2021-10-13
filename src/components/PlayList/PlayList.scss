@@ -9,7 +9,6 @@
       margin: 0 20px 0 10px;
       font-size: 16px;
       line-height: 20px;
-      color: #000;
       user-select: none;
     }
     .song-cover {
@@ -46,14 +45,12 @@
       font-size: 18px;
       font-weight: 600;
       line-height: 25px;
-      color: #000;
     }
     .author {
       flex: 1;
       padding-right: 16px;
       font-size: 16px;
       line-height: 20px;
-      color: #000;
     }
     .duration {
       width: 45px;
@@ -61,23 +58,22 @@
       font-size: 16px;
       line-height: 20px;
       text-align: right;
-      color: #000;
       opacity: 0.88;
       user-select: none;
     }
     &:hover {
-      background: #f2f2f4;
+      background: var(--color-secondary-bg);
       .play-btn {
         visibility: visible;
       }
     }
     &.current {
-      background: #eaeffd;
+      background: var(--color-primary-bg);
       .num,
       .song-name,
       .author,
       .duration {
-        color: #335eea;
+        color: var(--color-primary);
       }
     }
   }
@@ -91,8 +87,7 @@
     font-weight: 600;
     line-height: 24px;
     text-align: center;
-    color: #000;
-    background: #f2f2f4;
+    background: var(--color-secondary-bg-for-transparent);
     opacity: 0.78;
     transform-origin: center center;
     transition: all 0.2s;

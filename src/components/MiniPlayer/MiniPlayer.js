@@ -96,7 +96,7 @@ export default function MiniPlayer(props) {
             <ProgressBar
               rate={props.volumeRate}
               height="4"
-              barColor="#000"
+              barColor="#335eea"
               progressInfo={props.volume}
               onRateChange={handleVolRateChange}
             ></ProgressBar>
