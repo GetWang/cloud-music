@@ -21,8 +21,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "cd serverApi && npm start"
+    "api": "cd serverApi && npm start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://getwang.github.io/cloud-music",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -39,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "node-sass": "^6.0.1"
   }
 }
