@@ -58,7 +58,7 @@ export default class HomeView extends React.Component {
         <section className="recommend-song-list">
           <div className="title-wrapper">
             <h1 className="title">推荐歌单</h1>
-            <a className="view-more" href="/songList?category=推荐歌单">
+            <a className="view-more" href="#/songList?category=推荐歌单">
               查看更多
             </a>
           </div>

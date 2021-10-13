@@ -71,7 +71,7 @@ export default function SongLists(props) {
     return props.list.map((item, index) => {
       let countDesc = formatCount(item.playCount);
       let id = item.id;
-      let href = `/songListDetail/${id}`;
+      let href = `#/songListDetail/${id}`;
       return (
         <li className="list-item" key={`${index}_${id}`}>
           <a className="cover-wrapper" href={href}>

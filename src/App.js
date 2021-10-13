@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./App.scss";
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div id="app" className={appCls}>
-      <BrowserRouter>
+      <HashRouter>
         <NavHeader></NavHeader>
         <Switch>
           <Redirect exact from="/" to="/home"></Redirect>
@@ -30,7 +30,7 @@ function App() {
             <SongListDetailView></SongListDetailView>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
       <Player></Player>
     </div>
   );
