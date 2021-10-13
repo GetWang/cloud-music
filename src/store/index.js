@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import {
+  themeReducer,
   playingReducer,
   playListReducer,
   currIndexReducer,
@@ -11,6 +12,7 @@ import {
 
 const store = configureStore({
   reducer: {
+    theme: themeReducer,
     playing: playingReducer,
     playList: playListReducer,
     currIndex: currIndexReducer,

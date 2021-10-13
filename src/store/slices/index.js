@@ -1,3 +1,5 @@
+export { default as themeReducer, changeTheme } from "./themeSlice";
+
 export { default as playingReducer, changePlaying } from "./playingSlice";
 
 export {

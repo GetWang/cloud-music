@@ -52,7 +52,13 @@
   .mode {
     width: 40px;
     height: 40px;
-    background: pink;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.2s;
     cursor: pointer;
+    &:hover {
+      background: #f2f2f4;
+    }
   }
 }

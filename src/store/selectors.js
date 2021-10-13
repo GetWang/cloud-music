@@ -1,3 +1,5 @@
+export const selectTheme = (state) => state.theme;
+
 export const selectPlaying = (state) => state.playing;
 
 export const selectPlayList = (state) => state.playList;
