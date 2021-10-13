@@ -43,6 +43,7 @@
       line-height: 32px;
       text-overflow: ellipsis;
       white-space: nowrap;
+      opacity: 0.88;
     }
     .author-name {
       height: 22px;
@@ -131,7 +132,7 @@
       font-size: 28px;
       font-weight: 600;
       line-height: 40px;
-      opacity: 0.28;
+      opacity: 0.48;
     }
   }
   .collapse-btn {
@@ -148,7 +149,7 @@
     &:hover {
       background: var(--color-secondary-bg-for-transparent);
       .svg-icon {
-        opacity: .8;
+        opacity: 0.8;
       }
     }
     .svg-icon {
