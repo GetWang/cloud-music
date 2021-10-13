@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import * as Vibrant from "node-vibrant";
+import Color from "color";
 
 import "./PersonalFM.scss";
 import SvgIcon from "../SvgIcon/SvgIcon";
@@ -48,6 +50,7 @@ let handleSongs = function (data) {
 export default function PersonalFM(props) {
   const dispatch = useDispatch();
   const [songs, setSongs] = useState([]);
+  const [bgStyle, setBgStyle] = useState({});
   const playing = useSelector(selectPlaying);
   const currIndex = useSelector(selectCurrIndex);
   const currSong = useSelector(selectCurrSong);
@@ -68,6 +71,22 @@ export default function PersonalFM(props) {
       setSongs(data.songs);
     });
   }, []);
+  useEffect(() => {
+    const coverUrl = innerCurrSong ? innerCurrSong.coverUrl : "";
+    if (!coverUrl) {
+      return;
+    }
+    Vibrant.from(coverUrl, { colorCount: 1 })
+      .getPalette()
+      .then((palette) => {
+        const rgb = Color.rgb(palette.Vibrant._rgb);
+        const color1 = rgb.darken(0.1).rgb().string();
+        const color2 = rgb.lighten(0.28).rotate(-30).rgb().string();
+        setBgStyle({
+          background: `linear-gradient(to top left, ${color1}, ${color2})`,
+        });
+      });
+  }, [innerCurrSong]);
 
   let handlePlay = function () {
     if (!isFmOn) {
@@ -116,8 +135,9 @@ export default function PersonalFM(props) {
     coverUrl = song.coverUrl;
     authorNames = song.authorNames;
   }
+
   return (
-    <div className="personal-fm">
+    <div className="personal-fm" style={bgStyle}>
       <img className="cover" src={coverUrl} alt=""></img>
       <div className="desc-control">
         <h2 className="song-name">{name}</h2>
